@@ -1,0 +1,1943 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title id="metaSiteTitle">The Rock Solidarity Foundation — Initiative indépendante, non affiliée à Dwayne Douglas Johnson</title>
+<style>
+:root{
+  --navy:#082d72;--blue:#075bff;--blue2:#2678ff;--pale:#edf2ff;
+  --gold:#ffc400;--green:#16a34a;--ink:#101a38;--muted:#697493;
+  --line:#e5eaf7;--surface:#fff;--bg:#f4f6ff;--shadow:0 12px 34px rgba(20,45,105,.09);
+  --radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:linear-gradient(180deg,#f8f9ff 0,#f1f4ff 100%);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--ink)}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+
+/* EN-TÊTE OPTIMISÉ */
+.topbar{
+  height:72px;
+  background:rgba(255,255,255,.98);
+  border-bottom:1px solid #e8ecf8;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  padding:0 12px;
+  position:sticky;
+  top:0;
+  z-index:50;
+  backdrop-filter:blur(14px);
+}
+.left-nav-group{display:flex;align-items:center;gap:8px;min-width:0;flex:1}
+.hamburger-btn{background:transparent;border:0;width:38px;height:38px;border-radius:10px;display:grid;place-items:center;color:#071c4d;cursor:pointer;transition:background .2s;flex:none}
+.hamburger-btn:hover{background:#f1f4ff}
+.hamburger-btn svg{width:20px;height:20px}
+
+.brand{display:flex;align-items:center;gap:8px;min-width:0;flex:1}
+.brand-mark{width:34px;height:34px;flex:none}
+.brand-content{min-width:0;display:flex;flex-direction:column}
+.brand-name{font-size:13.5px;font-weight:850;letter-spacing:-0.4px;color:#071c4d;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand-name span{color:var(--blue)}
+.brand-tag{font-size:7.5px;font-style:italic;color:#53617f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.nav{display:flex;align-items:center;gap:8px}
+.nav a{display:flex;align-items:center;gap:9px;padding:10px 14px;border-radius:11px;font-size:13px;font-weight:700;color:#26365f;white-space:nowrap;transition:.2s}
+.nav a:hover{background:#eff4ff;color:var(--blue)}
+.nav a.active{background:var(--blue);color:white;box-shadow:0 8px 18px #075bff33}
+.nav svg{width:18px;height:18px}
+
+.top-actions{display:flex;align-items:center;gap:6px;flex:none}
+
+/* TIROIR LATÉRAL (BURGER MENU) */
+.mobile-drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:99;opacity:0;pointer-events:none;transition:opacity .3s ease;backdrop-filter:blur(2px)}
+.mobile-drawer-overlay.open{opacity:1;pointer-events:auto}
+.mobile-drawer{position:fixed;top:0;left:0;bottom:0;width:310px;max-width:85vw;background:#fff;z-index:100;transform:translateX(-100%);transition:transform .3s cubic-bezier(0.1,0.9,0.2,1);display:flex;flex-direction:column;box-shadow:5px 0 30px rgba(0,0,0,0.15)}
+.mobile-drawer.open{transform:translateX(0)}
+.drawer-header{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-bottom:1px solid #edf0f8}
+.drawer-title{font-size:17px;font-weight:850;color:#071c4d}
+.drawer-close{background:transparent;border:0;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:#596786;cursor:pointer;transition:background .2s}
+.drawer-close:hover{background:#f1f4ff;color:var(--blue)}
+.drawer-close svg{width:20px;height:20px}
+.drawer-body{flex:1;overflow-y:auto;padding:16px 12px;display:flex;flex-direction:column;gap:4px}
+.drawer-item{display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:12px;font-size:14px;font-weight:700;color:#26365f;transition:background .2s}
+.drawer-item:hover{background:#f1f4ff;color:var(--blue)}
+.drawer-item svg{width:20px;height:20px;color:var(--blue);flex:none}
+.drawer-divider{height:1px;background:#edf0f8;margin:10px 16px}
+
+/* GESTION DES VUES */
+.site-view { display: none; }
+.site-view.active-view { display: block; }
+
+/* TITRE DE BIENVENUE ET CONFIANCE PROFESSIONNEL (POLICE GEORGIA, PLUS GRAND & DYNAMIQUE) */
+.dynamic-welcome-header {
+  text-align: center;
+  margin: 22px 0 20px 0;
+  padding: 0 16px;
+}
+.dynamic-welcome-title {
+  font-family: Georgia, serif;
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.3px;
+  margin: 0 0 8px 0;
+  line-height: 1.25;
+}
+.dynamic-welcome-title span {
+  background: linear-gradient(135deg, #075bff, #2678ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.dynamic-welcome-subtitle {
+  font-family: Georgia, serif;
+  font-size: clamp(14px, 1.8vw, 17px);
+  color: #53617f;
+  font-style: italic;
+  margin: 0;
+  font-weight: normal;
+}
+
+/* PAGES DÉDIÉES */
+.standalone-page {
+  max-width: 900px;
+  margin: 30px auto;
+  background: var(--surface);
+  border: 1px solid #e7ebf7;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 40px;
+}
+.page-back-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #edf0f8;
+}
+.back-btn {
+  background: var(--pale);
+  color: var(--blue);
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-weight: 750;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background .2s;
+}
+.back-btn:hover { background: #dfe7ff; }
+.standalone-page h1 { font-size: 26px; color: var(--navy); margin-top: 0; display: flex; align-items: center; gap: 12px; }
+.standalone-page p, .standalone-page li { font-size: 15px; line-height: 1.7; color: #26365f; }
+.standalone-page ul { padding-left: 22px; margin: 20px 0; }
+.standalone-page li { margin-bottom: 12px; }
+
+.page{max-width:1560px;margin:18px auto 70px;padding:0 12px}
+.content-grid{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:24px;align-items:start}
+.feed{min-width:0;display:flex;flex-direction:column;gap:16px}
+
+.post,.side-card{background:var(--surface);border:1px solid #e7ebf7;border-radius:var(--radius);box-shadow:var(--shadow);position:relative}
+.post{padding:18px 20px 14px}
+.post-head{display:flex;align-items:center;justify-content:space-between;position:relative}
+.post-author-group{display:flex;align-items:center;gap:12px}
+.project-avatar{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid #e9f0ff}
+.post-author{font-size:16px;font-weight:850;color:#101b3e}
+.verified{display:inline-grid;place-items:center;background:var(--blue);color:white;border-radius:50%;width:17px;height:17px;font-size:11px;margin-left:4px}
+.post-meta{font-size:12px;color:#7883a0;margin-top:4px}
+
+.post-options-btn {
+  background: transparent;
+  border: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.post-options-btn:hover { background: #f1f4ff; color: var(--blue); }
+.post-options-btn svg { width: 20px; height: 20px; }
+
+.post-menu-dropdown {
+  position: absolute;
+  right: 0;
+  top: 45px;
+  width: 200px;
+  background: #fff;
+  border: 1px solid #e5eaf7;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  display: none;
+  flex-direction: column;
+  padding: 6px;
+  z-index: 20;
+}
+.post-menu-dropdown.open { display: flex; }
+.post-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #26365f;
+  background: transparent;
+  border: 0;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: background .2s;
+}
+.post-menu-item:hover { background: #f1f4ff; color: var(--blue); }
+.post-menu-item svg { width: 17px; height: 17px; color: var(--blue); flex: none; }
+
+.post-actions-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #edf2f8;
+  border-bottom: 1px solid #edf2f8;
+  margin-top: 14px;
+  padding: 4px 0;
+  position: relative;
+}
+.post-action-btn {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  padding: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #596786;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+  user-select: none;
+}
+.post-action-btn:hover { background: #f4f7ff; color: var(--blue); }
+.post-action-btn.liked { color: var(--blue); }
+.post-action-btn svg { width: 18px; height: 18px; }
+
+.fb-reactions-popup {
+  position: absolute;
+  bottom: 48px;
+  left: 10px;
+  background: #ffffff;
+  border-radius: 35px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  z-index: 50;
+  animation: popUpAnim 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.fb-reactions-popup.open { display: flex; }
+@keyframes popUpAnim {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.fb-reaction-emoji {
+  font-size: 26px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  padding: 0;
+}
+.fb-reaction-emoji:hover { transform: scale(1.4) translateY(-6px); }
+
+.reaction-toggle-trigger {
+  background: transparent;
+  border: 0;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: transform 0.2s;
+}
+.reaction-toggle-trigger:hover { transform: scale(1.2); }
+
+.post-comments-section {
+  margin-top: 12px;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+}
+.post-comments-section.open { display: flex; }
+
+/* COMMENTAIRES & OPTIONS AVANCÉES (RÉPONSES & STICKERS) */
+.comment-item {
+  background: #f8f9ff;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #26365f;
+  border: 1px solid #edf2f8;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.comment-item.pinned { border-color: var(--blue); background: #f0f5ff; }
+.comment-item.masked { background: #f1f3f8; color: #8c96ab; font-style: italic; }
+
+.comment-main-row { display: flex; gap: 10px; position: relative; }
+.comment-avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex: none; }
+.comment-body-content { flex: 1; min-width: 0; }
+.comment-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2px; }
+.comment-author-name { font-weight: 800; color: var(--navy); font-size: 12.5px; }
+.comment-time { font-size: 11px; color: var(--muted); }
+.comment-pinned-badge { font-size: 10px; background: var(--blue); color: white; padding: 1px 6px; border-radius: 6px; font-weight: 700; margin-bottom: 4px; display: inline-block; }
+.comment-text-view { word-break: break-word; line-height: 1.4; }
+.comment-edit-input { width: 100%; background: #fff; border: 1px solid var(--blue); border-radius: 8px; padding: 6px 10px; font-size: 13px; outline: none; margin-top: 4px; }
+
+/* STICKERS DE RÉACTION SUR COMMENTAIRE */
+.comment-reactions-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #ffffff;
+  border: 1px solid #e5eaf7;
+  border-radius: 20px;
+  padding: 2px 8px;
+  font-size: 12px;
+  margin-top: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  width: fit-content;
+}
+
+.comment-footer-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-left: 42px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+}
+.comment-action-link { background: none; border: 0; color: var(--muted); cursor: pointer; font-size: 12px; font-weight: 700; padding: 0; }
+.comment-action-link:hover { color: var(--blue); text-decoration: underline; }
+
+/* FIL DES RÉPONSES AUX COMMENTAIRES */
+.comment-replies-container {
+  margin-left: 42px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-left: 2px solid #d9e2f4;
+  padding-left: 10px;
+  margin-top: 4px;
+}
+.reply-item {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 12.5px;
+  border: 1px solid #e7ebf7;
+  display: flex;
+  gap: 8px;
+}
+.reply-avatar { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; flex: none; }
+.reply-body { flex: 1; min-width: 0; }
+
+.reply-form {
+  margin-left: 42px;
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+.reply-input {
+  flex: 1;
+  background: #ffffff;
+  border: 1px solid #e5eaf7;
+  border-radius: 16px;
+  padding: 6px 12px;
+  font-size: 12.5px;
+  outline: none;
+}
+.reply-submit {
+  background: var(--blue);
+  color: white;
+  border: 0;
+  border-radius: 16px;
+  padding: 0 12px;
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* POPUP STICKERS / RÉACTIONS SUR COMMENTAIRE (STYLE TIKTOK / FB) */
+.comment-stickers-popup {
+  position: absolute;
+  bottom: 100%;
+  left: 20px;
+  background: #ffffff;
+  border-radius: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  display: none;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  z-index: 40;
+  animation: popUpAnim 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.comment-stickers-popup.open { display: flex; }
+.sticker-emoji-btn {
+  font-size: 22px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  padding: 2px;
+}
+.sticker-emoji-btn:hover { transform: scale(1.3) translateY(-4px); }
+
+.comment-options-wrapper { position: relative; flex: none; }
+.comment-options-btn { background: transparent; border: 0; color: var(--muted); cursor: pointer; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-size: 16px; transition: background .2s; }
+.comment-options-btn:hover { background: #e5eaf7; color: var(--navy); }
+
+.comment-menu-dropdown {
+  position: absolute; right: 0; top: 32px; width: 180px; background: #fff; border: 1px solid #e5eaf7; border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12); display: none; flex-direction: column; padding: 6px; z-index: 30;
+}
+.comment-menu-dropdown.open { display: flex; }
+.comment-menu-item { background: transparent; border: 0; padding: 8px 12px; text-align: left; font-size: 12.5px; font-weight: 700; color: #26365f; border-radius: 8px; cursor: pointer; transition: background .2s; }
+.comment-menu-item:hover { background: #f1f4ff; color: var(--blue); }
+.comment-menu-item.danger { color: #dc2626; }
+.comment-menu-item.danger:hover { background: #fee2e2; }
+
+.comment-form { display: flex; gap: 8px; margin-top: 6px; }
+.comment-input { flex: 1; background: #f4f6ff; border: 1px solid #e5eaf7; border-radius: 20px; padding: 8px 14px; font-size: 13px; outline: none; color: var(--ink); }
+.comment-input:focus { border-color: var(--blue); background: #fff; }
+.comment-submit { background: var(--blue); color: white; border: 0; border-radius: 20px; padding: 0 16px; font-weight: 700; font-size: 12px; cursor: pointer; transition: background .2s; }
+.comment-submit:hover { background: #0647cc; }
+
+/* MODALE DE CONFIRMATION (SANS FOND NOIR NI FLOU) */
+.custom-modal-overlay {
+  position: fixed; inset: 0; background: transparent; backdrop-filter: none; z-index: 9999;
+  display: none; align-items: center; justify-content: center; padding: 16px; pointer-events: none;
+}
+.custom-modal-overlay.open { display: flex; }
+.custom-modal-card {
+  pointer-events: auto;
+  background: #ffffff; width: 100%; max-width: 360px; border-radius: 20px; padding: 24px 22px;
+  box-shadow: 0 20px 40px rgba(7, 41, 105, 0.22); border: 1px solid #e2e8f5; text-align: center; position: relative;
+  transform: scale(0.9); animation: scaleUpModal 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+@keyframes scaleUpModal { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+.custom-modal-icon-wrap {
+  width: 56px; height: 56px; margin: 0 auto 14px; background: linear-gradient(135deg, #eff4ff, #d9e6ff); border-radius: 50%;
+  display: grid; place-items: center; box-shadow: inset 0 2px 5px rgba(7, 91, 255, 0.15), 0 8px 16px rgba(7, 91, 255, 0.15);
+}
+.custom-modal-icon-wrap svg { width: 28px; height: 28px; fill: var(--blue); filter: drop-shadow(0 2px 3px rgba(0,0,0,0.1)); }
+.custom-modal-title { font-size: 16px; font-weight: 850; color: var(--navy); margin: 0 0 8px; }
+.custom-modal-message { font-size: 13.5px; color: #4a5568; line-height: 1.5; margin: 0 0 22px; }
+.custom-modal-actions { display: flex; gap: 10px; }
+.custom-modal-btn { flex: 1; padding: 10px 16px; border-radius: 12px; font-size: 13px; font-weight: 750; border: 0; cursor: pointer; transition: transform 0.1s ease, background 0.2s ease; }
+.custom-modal-btn:active { transform: scale(0.96); }
+.custom-modal-btn.cancel { background: #f1f4ff; color: #4a5568; }
+.custom-modal-btn.cancel:hover { background: #e2e8f5; }
+.custom-modal-btn.confirm { background: linear-gradient(135deg, #dc2626, #b91c1c); color: white; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3); }
+.custom-modal-btn.confirm:hover { background: linear-gradient(135deg, #ef4444, #dc2626); }
+
+/* BOUTON DE CHAT FLOTTANT */
+.chat-launcher{
+  position:fixed; left:20px; bottom:20px; z-index:40; height:60px; min-width:60px;
+  background:linear-gradient(135deg,#075bff,#06358c); color:white; border:0; border-radius:30px;
+  box-shadow:0 10px 30px rgba(7, 91, 255, 0.4); display:flex; align-items:center; padding:0 18px 0 14px; gap:12px;
+  cursor:pointer; overflow:hidden; transition:all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.chat-launcher svg{width:28px;height:28px;fill:currentColor;flex:none}
+.chat-label-text{font-size:13px;font-weight:750;white-space:nowrap;max-width:0;opacity:0;overflow:hidden;transition:max-width 0.4s ease, opacity 0.3s ease}
+.chat-launcher.expanded{max-width:400px}
+.chat-launcher.expanded .chat-label-text{max-width:300px;opacity:1}
+.chat-launcher:hover{transform:scale(1.03);box-shadow:0 14px 35px rgba(7, 91, 255, 0.5)}
+
+/* INTERFACE DE DISCUSSION STYLE WHATSAPP BUSINESS FIDÈLE */
+.messenger-screen{position:fixed;inset:0;z-index:150;background:#efeae2;display:none;flex-direction:column;color:#111b21}
+.messenger-screen.open{display:flex}
+
+.messenger-topbar{height:60px;background:#00a884;color:white;display:flex;align-items:center;justify-content:space-between;padding:0 15px;box-shadow:0 1px 3px rgba(0,0,0,0.15)}
+.messenger-brand{display:flex;align-items:center;gap:12px;cursor:pointer;min-width:0;flex:1}
+.messenger-brand img{width:40px;height:40px;border-radius:50%;object-fit:cover}
+
+.messenger-close{border:0;background:transparent;border-radius:50%;width:40px;height:40px;padding:0;color:white;display:grid;place-items:center;flex:none;cursor:pointer;transition:background .2s}
+.messenger-close:hover{background:rgba(255,255,255,0.18)}
+.messenger-close svg{width:24px;height:24px;fill:currentColor}
+
+.message-thread{flex:1;display:flex;flex-direction:column;max-width:800px;width:100%;margin:0 auto;background:#efeae2;overflow:hidden;position:relative}
+.thread-messages{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:10px;background-image:radial-gradient(#d4dad6 1px, transparent 1px);background-size:20px 20px}
+
+/* BULLES DE DISCUSSION */
+.wa-message{max-width:75%;min-width:140px;padding:8px 12px;border-radius:8px;font-size:13px;line-height:1.4;position:relative;box-shadow:0 1px 0.5px rgba(0,0,0,0.13);word-break:break-word}
+.wa-message.incoming{background:#ffffff;align-self:flex-start;border-top-left-radius:0;color:#111b21}
+.wa-message.outgoing{background:#d9fdd3;align-self:flex-end;border-top-right-radius:0;color:#111b21}
+.wa-text{white-space:pre-wrap}
+.wa-meta{display:flex;align-items:center;justify-content:flex-end;gap:3px;margin-top:2px;font-size:10px;color:#667781}
+
+/* LECTEUR VOCAL STYLE WHATSAPP RÉEL */
+.wa-voice-bubble { display: flex; align-items: center; gap: 10px; min-width: 210px; padding: 4px 0; }
+.wa-voice-play-btn { width: 36px; height: 36px; border-radius: 50%; background: #00a884; color: white; border: 0; display: grid; place-items: center; cursor: pointer; flex: none; transition: transform .15s; }
+.wa-voice-play-btn:hover { transform: scale(1.08); }
+.wa-voice-play-btn svg { width: 16px; height: 16px; fill: currentColor; margin-left: 2px; }
+.wa-voice-waveform { flex: 1; display: flex; align-items: center; gap: 2px; height: 24px; }
+.wa-voice-bar { width: 3px; background: #8696a0; border-radius: 2px; }
+.wa-voice-duration { font-size: 11px; color: #667781; font-weight: 600; white-space: nowrap; }
+
+/* PANNEAU D'ENREGISTREMENT VOCAL DANS LA BARRE DE SAISIE (STYLE WHATSAPP) */
+.voice-recording-panel {
+  display: none;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 4px 12px 4px 16px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+.voice-recording-panel.open { display: flex; }
+.voice-rec-left { display: flex; align-items: center; gap: 10px; color: #ea0000; font-weight: 700; font-size: 13.5px; }
+.voice-red-dot { width: 10px; height: 10px; background: #ea0000; border-radius: 50%; animation: pulseRed 1s infinite; }
+@keyframes pulseRed { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.2); } 100% { opacity: 1; transform: scale(1); } }
+.voice-rec-actions { display: flex; align-items: center; gap: 12px; }
+.voice-cancel-btn { background: transparent; border: 0; color: #ea0000; font-weight: 700; font-size: 13px; cursor: pointer; }
+
+/* MENU DU TROMBONE STYLE WHATSAPP */
+.wa-attach-popup {
+  position: absolute;
+  bottom: 70px;
+  left: 16px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  display: none;
+  flex-direction: column;
+  padding: 8px 0;
+  z-index: 200;
+  min-width: 180px;
+  animation: popUpAnim 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.wa-attach-popup.open { display: flex; }
+.wa-attach-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 18px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #3b4a54;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+  transition: background .2s;
+}
+.wa-attach-item:hover { background: #f0f2f5; color: var(--blue); }
+.wa-attach-item svg { width: 20px; height: 20px; fill: var(--blue); flex: none; }
+
+/* BARRE DE SAISIE WHATSAPP */
+.message-composer{display:flex;align-items:center;gap:8px;padding:10px 16px;background:#f0f2f5;position:relative}
+.composer-action-btn{background:transparent;border:0;color:#54656f;cursor:pointer;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;transition:background .2s;flex:none}
+.composer-action-btn:hover{background:rgba(0,0,0,0.06);color:#111b21}
+.composer-action-btn svg{width:22px;height:22px;fill:currentColor}
+.composer-input{flex:1;background:#ffffff;border:0;border-radius:24px;padding:10px 16px;font-size:14px;outline:none;color:#111b21;max-height:100px;box-shadow:0 1px 2px rgba(0,0,0,0.05)}
+.send-message{background:#00a884;color:white;border:0;border-radius:50%;width:42px;height:42px;display:grid;place-items:center;cursor:pointer;flex:none;transition:background .2s, transform .2s}
+.send-message:hover{background:#008f72;transform:scale(1.05)}
+.send-message svg{width:20px;height:20px;fill:currentColor;margin-left:2px}
+
+/* GRILLES DE MÉDIAS & YOUTUBE */
+.meta-media-grid{display:grid;gap:3px;border-radius:12px;overflow:hidden;background:#e9eef9;width:100%;position:relative}
+.meta-media-grid img, .meta-media-grid video, .meta-media-grid iframe{width:100%;height:100%;object-fit:cover;cursor:pointer;display:block;transition:filter .2s}
+.media-item-wrap{position:relative;width:100%;height:100%;overflow:hidden}
+.youtube-container{position:relative;width:100%;height:100%;background:#000}
+.youtube-container iframe{width:100%;height:100%;border:0}
+.youtube-touch-overlay{position:absolute;inset:0;z-index:5;background:transparent;cursor:pointer}
+
+.video-play-badge{position:absolute;inset:0;background:rgba(0,0,0,0.25);display:grid;place-items:center;pointer-events:none;transition:background .25s ease}
+.video-play-badge .play-circle{width:60px;height:60px;background:rgba(0, 0, 0, 0.7);backdrop-filter:blur(8px);border:1.5px solid rgba(255, 255, 255, 0.4);border-radius:50%;display:grid;place-items:center;color:white;box-shadow:0 8px 25px rgba(0,0,0,0.4);transition:transform .25s cubic-bezier(0.175, 0.885, 0.32, 1.275), background .25s ease, border-color .25s ease}
+.video-play-badge .play-circle svg{width:24px;height:24px;fill:white;margin-left:3px}
+.media-item-wrap:hover .video-play-badge{background:rgba(0,0,0,0.15)}
+.media-item-wrap:hover .video-play-badge .play-circle{transform:scale(1.1);background:var(--blue);border-color:white;box-shadow:0 10px 30px rgba(7,91,255,0.5)}
+
+.meta-media-grid.fb-grid-1{grid-template-columns:1fr;max-height:460px}
+.meta-media-grid.fb-grid-1 .media-item-wrap{height:410px}
+.meta-media-grid.fb-grid-2{grid-template-columns:repeat(2,1fr);height:310px}
+.meta-media-grid.fb-grid-3{grid-template-columns:2fr 1fr;grid-template-rows:repeat(2,152px);height:308px}
+.meta-media-grid.fb-grid-3 .grid-item-0{grid-row:span 2;height:308px}
+.meta-media-grid.fb-grid-4-plus{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,155px);height:314px}
+.meta-media-grid.fb-grid-4-plus .media-item-wrap{height:155px}
+
+.grid-more-overlay{position:relative;width:100%;height:100%}
+.grid-more-badge{position:absolute;inset:0;background:rgba(0,0,0,0.6);color:white;display:grid;place-items:center;font-size:32px;font-weight:800;cursor:pointer;backdrop-filter:blur(2px)}
+
+/* VISIONNEUSE PLEIN ÉCRAN */
+.fb-lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:100;display:none;flex-direction:column;opacity:0;transition:opacity .25s ease}
+.fb-lightbox.open{display:flex;opacity:1}
+.fb-lightbox-topbar{height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 25px;background:rgba(0,0,0,0.4);border-bottom:1px solid rgba(255,255,255,0.08);z-index:102}
+.fb-lightbox-back{background:rgba(255,255,255,0.15);color:white;border:0;border-radius:10px;padding:9px 16px;font-size:13px;font-weight:750;display:flex;align-items:center;gap:8px;cursor:pointer;transition:background .2s}
+.fb-lightbox-back:hover{background:rgba(255,255,255,0.3)}
+.fb-lightbox-counter{color:white;font-size:13px;font-weight:700;background:rgba(255,255,255,0.15);padding:6px 14px;border-radius:14px}
+.fb-lightbox-body{flex:1;display:flex;align-items:center;justify-content:center;position:relative;padding:20px}
+.fb-lightbox-content{max-width:88vw;max-height:80vh;display:flex;align-items:center;justify-content:center}
+.fb-lightbox-content img, .fb-lightbox-content video{max-width:88vw;max-height:78vh;object-fit:contain;border-radius:6px;box-shadow:0 10px 40px rgba(0,0,0,0.6)}
+.fb-lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.15);color:white;border:0;border-radius:50%;width:50px;height:50px;font-size:26px;display:grid;place-items:center;cursor:pointer;z-index:102;transition:background .2s}
+.fb-lightbox-nav:hover{background:rgba(255,255,255,0.3)}
+.fb-lightbox-prev{left:25px}
+.fb-lightbox-next{right:25px}
+
+/* Toast */
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:#102b60;color:white;padding:12px 17px;border-radius:12px;font-size:12px;z-index:300;opacity:0;pointer-events:none;transition:.25s;box-shadow:var(--shadow)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* FOOTER */
+.site-footer{background:#101d3b;color:#d9e2f4;margin-top:55px;padding:48px max(24px,calc((100vw - 1420px)/2)) 0}
+.footer-main{max-width:1420px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1.25fr;gap:38px;padding-bottom:38px}
+.footer-brand{display:inline-flex;align-items:center;gap:10px;color:white;text-decoration:none;font-size:19px;font-weight:850}
+.footer-brand b{color:#ffca35}
+.footer-mark{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#075bff,#06358c);display:grid;place-items:center;color:#ffca35}
+.footer-about p{max-width:330px;color:#aebbd3;font-size:12px;line-height:1.8;margin:16px 0}
+.footer-column{display:flex;flex-direction:column;gap:12px}
+.footer-column h3{font-size:13px;color:#fff;margin:4px 0 8px}
+.footer-column>a{font-size:11px;color:#aebbd3;text-decoration:none}
+.footer-column>a:hover{color:#fff}
+.footer-contact p{display:flex;gap:10px;align-items:flex-start;margin:0 0 10px 0;color:#aebbd3;font-size:11px;line-height:1.7}
+.footer-contact p>span:first-child{color:#ffca35;font-size:17px;flex:none}
+.footer-contact b{color:white}
+.footer-contact small{display:block;color:#8190ac;font-size:9px}
+.footer-bottom{max-width:1420px;margin:0 auto;border-top:1px solid #30405f;padding:17px 0;display:flex;justify-content:space-between;color:#8f9db7;font-size:10px}
+@media(max-width:800px){.footer-main{grid-template-columns:1fr 1fr;gap:28px}.footer-about{grid-column:1/-1}}
+
+/* HERO SECTION */
+.hero{position:relative;isolation:isolate;background:#08285f;min-height:340px;height:auto;padding:28px 42px;display:flex;align-items:center;overflow:hidden;margin-bottom:18px;border-radius:20px;box-shadow:var(--shadow);color:white}
+.hero-copy{position:relative;z-index:3;width:100%;max-width:54%}
+.hero h1{font-size:clamp(24px,2.6vw,40px);line-height:1.08;margin:0 0 11px;font-weight:850}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p{font-size:15px;color:#e3edff;margin:0 0 21px}
+.hero-slider{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.hero-slide{position:absolute;inset:0;background-image:var(--slide-image);background-size:cover;background-position:center;opacity:0;transition:opacity 1s ease}
+.hero-slide.active{opacity:1}
+.hero-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,22,59,.92) 0%,rgba(4,35,83,.82) 50%,rgba(4,35,83,.35) 100%);z-index:1}
+.hero-slide-copy{position:absolute;right:38px;top:28px;z-index:4;display:flex;flex-direction:column;gap:5px;width:min(38%,330px);color:#fff;text-align:right}
+.hero-controls{position:absolute;right:28px;bottom:18px;z-index:4;display:flex;align-items:center;gap:12px;pointer-events:auto}
+.hero-arrow{width:32px;height:32px;border-radius:50%;border:1px solid #ffffff99;background:#08285f88;color:#fff;font-size:24px;cursor:pointer;display:grid;place-items:center}
+.hero-dots{display:flex;align-items:center;gap:7px}
+.hero-dots button{width:9px;height:9px;border:1px solid #fff;border-radius:50%;background:transparent;cursor:pointer}
+.hero-dots button.active{background:#fff}
+
+@media(max-width:850px){
+ .topbar{height:66px;padding:0 8px}
+ .nav{display:none}
+ .hero{min-height:380px;padding:20px 16px}.hero-copy{max-width:100%}
+ .sidebar{display:none}.content-grid{grid-template-columns:1fr;gap:0}
+ .page{padding:0 8px;margin-top:10px}
+ .post{border-radius:14px;padding:16px 14px 12px}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="left-nav-group">
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Ouvrir le menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+    <a class="brand" href="#" onclick="switchView('home'); return false;">
+      <svg class="brand-mark" viewBox="0 0 64 64" role="img">
+        <defs><linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#075bff"/><stop offset="1" stop-color="#06358c"/></linearGradient><linearGradient id="lg2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffd52e"/><stop offset="1" stop-color="#ff9f00"/></linearGradient></defs>
+        <path d="M32 56C24 49 7 38 5 24 3 11 18 3 29 13l3 3 4-4C48 2 62 11 59 25 56 39 42 49 32 56Z" fill="url(#lg1)"/>
+        <path d="M31 51C22 43 11 35 10 24c-1-8 7-13 14-9 4 2 6 6 8 9 3-5 7-10 13-10 7 0 12 6 10 13-2 10-15 20-24 24Z" fill="url(#lg2)" opacity=".98"/>
+        <path d="M17 29l10 9 8-10 5 4 8-11" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M23 22l-6 7 10 9" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/>
+      </svg>
+      <div class="brand-content">
+        <div class="brand-name">The Rock <span>Solidarity Foundation</span></div>
+        <div class="brand-tag">Initiative indépendante · Non affiliée à Dwayne Douglas Johnson</div>
+      </div>
+    </a>
+  </div>
+  <nav class="nav">
+    <a class="active" href="#" onclick="switchView('home'); return false;"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg>Accueil</a>
+    <a href="#" onclick="switchView('home'); document.querySelector('#campagnes')?.scrollIntoView({behavior:'smooth'}); return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14V5a2 2 0 0 1 2-2h12v13H6a2 2 0 0 0-2 2v-4Zm14-8 4-3v14l-4-3"/></svg>Campagnes</a>
+  </nav>
+  <div class="top-actions"></div>
+</header>
+
+<div class="mobile-drawer-overlay" id="drawerOverlay"></div>
+<aside class="mobile-drawer" id="mobileDrawer">
+  <div class="drawer-header">
+    <span class="drawer-title">Navigation & Infos</span>
+    <button class="drawer-close" id="drawerClose" aria-label="Fermer le menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <a href="#" class="drawer-item drawer-link" onclick="switchView('home');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg>Accueil</a>
+    <a href="#" class="drawer-item drawer-link" onclick="switchView('home');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14V5a2 2 0 0 1 2-2h12v13H6a2 2 0 0 0-2 2v-4Zm14-8 4-3v14l-4-3"/></svg>Campagnes et projets</a>
+    <div class="drawer-divider"></div>
+    <a href="#" class="drawer-item drawer-link" onclick="switchView('criteres');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Critères d'attribution de l'aide</a>
+    <a href="#" class="drawer-item drawer-link" onclick="switchView('confidentialite');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Règles de confidentialité</a>
+    <div class="drawer-divider"></div>
+    <a href="#contact" class="drawer-item drawer-link" onclick="switchView('home');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Contact & Support</a>
+  </div>
+</aside>
+
+<!-- VUE 1 : ACCUEIL -->
+<div id="viewHome" class="site-view active-view">
+  <main class="page" id="accueil">
+    
+    <!-- TITRE DE BIENVENUE ET CONFIANCE PROFESSIONNEL (POLICE GEORGIA) -->
+    <div class="dynamic-welcome-header">
+      <h2 class="dynamic-welcome-title">Espace Officiel de <span>The Rock Solidarity Foundation</span></h2>
+      <p class="dynamic-welcome-subtitle">Plateforme solidaire d'accompagnement et de suivi des projets</p>
+    </div>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="hero-kicker"><span>✦</span> LA SOLIDARITÉ QUI FAIT AVANCER</div>
+        <h1>Soutenons ensemble les projets qui bâtissent <em>un avenir meilleur</em></h1>
+        <p>Nous accompagnons les entrepreneurs et les porteurs de projets qui ont besoin d'un nouvel élan.</p>
+        <button style="width:auto;padding:12px 24px;border:0;background:linear-gradient(90deg,#12a63d,#0d982f);color:white;border-radius:11px;font-weight:850;" onclick="document.querySelector('#campagnes').scrollIntoView({behavior:'smooth'})">Découvrir les projets soutenus →</button>
+      </div>
+      <div class="hero-slider" id="heroSlider">
+        <div class="hero-slide active" style="--slide-image:url('image1.jpg')"></div>
+        <div class="hero-slide" style="--slide-image:url('image2.jpg')"></div>
+        <div class="hero-slide" style="--slide-image:url('image3.jpg')"></div>
+        <div class="hero-shade"></div>
+        <div class="hero-slide-copy">
+          <span style="font-size:10px;font-weight:850;letter-spacing:1.4px;color:#ffe18a">À LA UNE</span>
+          <strong>Des projets qui méritent une chance</strong>
+          <span style="font-size:12px;color:#e5efff">Un accompagnement concret pour transformer les idées.</span>
+        </div>
+        <div class="hero-controls">
+          <button type="button" class="hero-arrow" id="heroPrev">‹</button>
+          <div class="hero-dots" id="heroDots">
+            <button type="button" class="active"></button>
+            <button type="button"></button>
+            <button type="button"></button>
+          </div>
+          <button type="button" class="hero-arrow" id="heroNext">›</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="content-grid">
+      <section class="feed" id="campagnes">
+        <div id="dynamicFeedContainer"></div>
+      </section>
+
+      <aside class="sidebar">
+        <section class="side-card">
+          <div class="side-banner"><div class="trophy">🏆</div><h3>Ensemble,<br>plus loin !</h3></div>
+          <div class="side-body"><p>Chaque don compte pour soutenir les projets qui créent de la valeur.</p></div>
+        </section>
+        <section class="side-card" id="apropos">
+          <div class="values-head"><span style="font-size:25px">💎</span> <span>Nos valeurs</span></div>
+          <ul class="values-list">
+            <li><span class="check">✓</span> Solidarité</li>
+            <li><span class="check">✓</span> Développement</li>
+            <li><span class="check">✓</span> Partage</li>
+            <li><span class="check">✓</span> Réussite collective</li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+  </main>
+</div>
+
+<!-- VUE 2 : CRITÈRES -->
+<div id="viewCriteres" class="site-view">
+  <div class="standalone-page">
+    <div class="page-back-bar">
+      <button class="back-btn" onclick="switchView('home')">← Retour à l'accueil</button>
+      <span style="font-size:12px;color:var(--muted);font-weight:700">The Rock Solidarity Foundation</span>
+    </div>
+    <h1><span>🎯</span> Critères d'attribution de l'aide</h1>
+    <p>Pour bénéficier d'un accompagnement ou d'un soutien financier de la part de la fondation, chaque porteur de projet ou entrepreneur doit remplir les critères fondamentaux suivants :</p>
+    <ul>
+      <li><b>Utilité sociale et locale :</b> Le projet doit présenter un impact positif direct sur la communauté ou le développement économique local.</li>
+      <li><b>Engagement et sérieux :</b> Fournir un dossier clair détaillant les objectifs, le plan d'utilisation des fonds et la motivation de l'équipe.</li>
+      <li><b>Transparence financière :</b> Accepter de rendre compte de l'avancement des réalisations et de l'utilisation de l'aide allouée.</li>
+      <li><b>Indépendance :</b> Le projet ne doit pas aller à l'encontre des valeurs de solidarité, d'éthique et de respect mutuel prônées par l'initiative.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- VUE 3 : CONFIDENTIALITÉ -->
+<div id="viewConfidentialite" class="site-view">
+  <div class="standalone-page">
+    <div class="page-back-bar">
+      <button class="back-btn" onclick="switchView('home')">← Retour à l'accueil</button>
+      <span style="font-size:12px;color:var(--muted);font-weight:700">The Rock Solidarity Foundation</span>
+    </div>
+    <h1><span>🔒</span> Règles de confidentialité</h1>
+    <p>La protection de vos données personnelles est une priorité absolue pour The Rock Solidarity Foundation :</p>
+    <ul>
+      <li><b>Collecte minimale :</b> Seules les informations strictement nécessaires fournies via nos formulaires de contact ou de soutien sont conservées.</li>
+      <li><b>Sécurité des échanges :</b> Les messages et dossiers partagés via notre messagerie sécurisée restent strictement confidentiels et ne sont jamais revendus à des tiers.</li>
+      <li><b>Utilisation des médias :</b> Les documents ou photos partagés pour les projets le sont dans le cadre strict de l'évaluation et de la communication autorisée par le demandeur.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- BOUTON DE CHAT FLOTTANT -->
+<button class="chat-launcher" id="chatLauncher" aria-label="Ouvrir la discussion">
+  <svg viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-9 8.5 9 9 0 0 1-4-.9L3 21l1.9-4.5A8 8 0 1 1 21 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01" stroke-width="3" stroke-linecap="round"/></svg>
+  <span class="chat-label-text" id="chatLabelText">Besoin d'aide ? Écrivez-nous</span>
+</button>
+
+<!-- INTERFACE DE DISCUSSION WHATSAPP COMPLÈTE -->
+<section class="messenger-screen" id="messengerScreen">
+  <header class="messenger-topbar" id="messengerTopbar">
+    <button id="closeMessenger" class="messenger-close" aria-label="Retour"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button>
+    <div class="messenger-brand" id="messengerBrand">
+      <img id="waAvatarHead" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&h=120&fit=crop&crop=faces" alt="Avatar">
+      <div>
+        <strong style="font-size:15px; display:block;"><span id="waContactName">Fondation (Support)</span></strong>
+        <small id="waPresence">en ligne</small>
+      </div>
+    </div>
+  </header>
+  <div class="message-thread">
+    <div class="thread-messages" id="threadMessages">
+      <div class="wa-message incoming">
+        <div class="wa-text">Bonjour ! Bienvenue sur The Rock Solidarity Foundation. Comment pouvons-nous vous aider aujourd'hui ?</div>
+        <div class="wa-meta"><span class="live-clock-time" data-time="2026-11-10T09:00:00Z"></span></div>
+      </div>
+    </div>
+
+    <!-- MENU DU TROMBONE WHATSAPP -->
+    <div class="wa-attach-popup" id="waAttachPopup">
+      <input type="file" id="waGalleryInput" accept="image/*,video/*" style="display:none">
+      <input type="file" id="waCameraInput" accept="image/*" capture="environment" style="display:none">
+      <input type="file" id="waDocInput" accept=".pdf,.doc,.docx,.xls,.xlsx,.txt" style="display:none">
+      
+      <button type="button" class="wa-attach-item" id="attachGalleryBtn">
+        <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+        Galerie
+      </button>
+      <button type="button" class="wa-attach-item" id="attachCameraBtn">
+        <svg viewBox="0 0 24 24"><path d="M12 9c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zM20 4h-3.17L15 2H9L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 13c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
+        Appareil photo
+      </button>
+      <button type="button" class="wa-attach-item" id="attachDocBtn">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+        Documents
+      </button>
+    </div>
+
+    <!-- BARRE DE SAISIE WHATSAPP (AVEC MODE VOCAL INTÉGRÉ) -->
+    <form class="message-composer" id="messageForm">
+      <button type="button" class="composer-action-btn" id="waAttachBtn" title="Joindre un fichier"><svg viewBox="0 0 24 24"><path d="M21.3 11.2l-8.9 8.9c-2.4 2.4-6.3 2.4-8.7 0s-2.4-6.3 0-8.7l9.7-9.7c1.5-1.5 3.9-1.5 5.4 0s1.5 3.9 0 5.4l-8.7 8.7c-.8.8-2 .8-2.8 0s-.8-2 0-2.8l7.5-7.5-1.4-1.4-7.5 7.5c-1.6 1.6-1.6 4.2 0 5.8s4.2 1.6 5.8 0l8.7-8.7c2.3-2.3 2.3-6.1 0-8.4s-6.1-2.3-8.4 0l-9.7 9.7c-3.1 3.1-3.1 8.2 0 11.3s8.2 3.1 11.3 0l8.9-8.9-1.4-1.4z"/></svg></button>
+      
+      <!-- Zone de texte normale -->
+      <textarea class="composer-input" id="messageInput" rows="1" placeholder="Écrire un message..."></textarea>
+      
+      <!-- Panneau d'enregistrement vocal intégré à la place du texte -->
+      <div class="voice-recording-panel" id="voiceRecordingPanel">
+        <div class="voice-rec-left">
+          <div class="voice-red-dot"></div>
+          <span id="voiceTimer">0:00</span>
+          <span style="font-size:12.5px; color:#54656f; font-weight:500;">Enregistrement...</span>
+        </div>
+        <div class="voice-rec-actions">
+          <button type="button" class="voice-cancel-btn" id="voiceCancelBtn">Annuler</button>
+        </div>
+      </div>
+
+      <button type="button" class="composer-action-btn" id="waMicBtn" title="Enregistrer un message vocal"><svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button>
+      <button type="submit" class="send-message" id="waSendBtn" title="Envoyer"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
+    </form>
+  </div>
+</section>
+
+<!-- VISIONNEUSE PLEIN ÉCRAN -->
+<div class="fb-lightbox" id="fbLightbox">
+  <div class="fb-lightbox-topbar">
+    <button class="fb-lightbox-back" id="lightboxBackBtn">← Retour au site</button>
+    <div class="fb-lightbox-counter" id="lightboxCounter">1 / 1</div>
+  </div>
+  <div class="fb-lightbox-body">
+    <button class="fb-lightbox-nav fb-lightbox-prev" id="lightboxPrev">‹</button>
+    <button class="fb-lightbox-nav fb-lightbox-next" id="lightboxNext">›</button>
+    <div class="fb-lightbox-content" id="lightboxContainer"></div>
+  </div>
+</div>
+
+<!-- MODALE DE CONFIRMATION (SANS FOND NOIR NI FLOU) -->
+<div class="custom-modal-overlay" id="customModalOverlay">
+  <div class="custom-modal-card">
+    <div class="custom-modal-icon-wrap" id="modalIconWrap">
+      <svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+    </div>
+    <h3 class="custom-modal-title" id="modalTitle">Confirmer l'action</h3>
+    <p class="custom-modal-message" id="modalMessage">Voulez-vous vraiment exécuter cette action ?</p>
+    <div class="custom-modal-actions">
+      <button type="button" class="custom-modal-btn cancel" id="modalCancelBtn">Annuler</button>
+      <button type="button" class="custom-modal-btn confirm" id="modalConfirmBtn">Confirmer</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- PIED DE PAGE -->
+<footer class="site-footer" id="contact">
+  <div class="footer-main">
+    <div class="footer-about">
+      <a class="footer-brand" href="#" onclick="switchView('home'); return false;"><span class="footer-mark">✦</span><span>Solidarité <b>Plus</b></span></a>
+      <p>Une initiative privée qui accompagne les entrepreneurs, les entreprises et les porteurs de projets dans leurs ambitions de développement.</p>
+    </div>
+    <div class="footer-column"><h3>Navigation</h3><a href="#" onclick="switchView('home'); return false;">Accueil</a><a href="#" onclick="switchView('home'); document.querySelector('#campagnes')?.scrollIntoView({behavior:'smooth'}); return false;">Projets soutenus</a></div>
+    <div class="footer-column"><h3>Informations</h3><a href="#" onclick="switchView('confidentialite'); return false;">Règles de confidentialité</a></div>
+    <div class="footer-column footer-contact">
+      <h3>Nous contacter</h3>
+      <p><span>✆</span><span><b>WhatsApp</b><br><span id="footerPhoneText">+229 01 02 03 04</span></span></p>
+      <p><span>✉</span><span><b>E-mail</b><br><span id="footerEmailText">contact@therocksolidarity.org</span></span></p>
+    </div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 The Rock Solidarity Foundation. Tous droits réservés.</span></div>
+</footer>
+
+<script>
+const $ = (s, root=document) => root.querySelector(s);
+const $$ = (s, root=document) => [...root.querySelectorAll(s)];
+
+function escapeHtml(value) {
+  return String(value ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+function readJSON(key, fallback) {
+  try { const raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : fallback; } catch (e) { return fallback; }
+}
+
+let modalResolveCallback = null;
+function showCustomModal(title, message, confirmText = 'Confirmer', iconSvgPath = null) {
+  return new Promise((resolve) => {
+    $('#modalTitle').textContent = title;
+    $('#modalMessage').textContent = message;
+    $('#modalConfirmBtn').textContent = confirmText;
+    if (iconSvgPath) {
+      $('#modalIconWrap').innerHTML = `<svg viewBox="0 0 24 24"><path d="${iconSvgPath}"/></svg>`;
+    }
+    $('#customModalOverlay').classList.add('open');
+    modalResolveCallback = resolve;
+  });
+}
+
+$('#modalCancelBtn')?.addEventListener('click', () => {
+  $('#customModalOverlay').classList.remove('open');
+  if (modalResolveCallback) modalResolveCallback(false);
+});
+
+$('#modalConfirmBtn')?.addEventListener('click', () => {
+  $('#customModalOverlay').classList.remove('open');
+  if (modalResolveCallback) modalResolveCallback(true);
+});
+
+(function purgeBuggedCache() {
+  try {
+    const customPosts = readJSON('rock_custom_posts', []);
+    let likes = readJSON('rock_post_likes', {});
+    let needsUpdate = false;
+    customPosts.forEach(p => {
+      if (likes[p.id] === undefined || likes[p.id] === 9) {
+        likes[p.id] = 0;
+        needsUpdate = true;
+      }
+    });
+    if (needsUpdate) localStorage.setItem('rock_post_likes', JSON.stringify(likes));
+  } catch(e) {}
+})();
+
+function formatLiveClockWithAgo(dateString) {
+  if (!dateString) return "";
+  const past = new Date(dateString);
+  if (isNaN(past.getTime())) return "";
+
+  const now = new Date();
+  const currentHours = String(now.getHours()).padStart(2, '0');
+  const currentMinutes = String(now.getMinutes()).padStart(2, '0');
+  const currentSeconds = String(now.getSeconds()).padStart(2, '0');
+  const liveClock = `${currentHours}:${currentMinutes}:${currentSeconds}`;
+
+  const diffSec = Math.floor((now - past) / 1000);
+
+  let agoText = "À l'instant";
+  if (diffSec >= 60) {
+    const diffMin = Math.floor(diffSec / 60);
+    if (diffMin < 60) {
+      agoText = `Il y a ${diffMin} min`;
+    } else {
+      const diffHour = Math.floor(diffMin / 60);
+      if (diffHour < 24) {
+        agoText = `Il y a ${diffHour} h`;
+      } else {
+        const diffDay = Math.floor(diffHour / 24);
+        if (diffDay === 1) {
+          agoText = `Il y a 1 jour`;
+        } else if (diffDay < 30) {
+          agoText = `Il y a ${diffDay} jours`;
+        } else {
+          const diffMonth = Math.floor(diffDay / 30);
+          agoText = diffMonth === 1 ? `Il y a 1 mois` : `Il y a ${diffMonth} mois`;
+        }
+      }
+    }
+  }
+
+  return `${liveClock} (${agoText})`;
+}
+
+function updateAllLiveClocks() {
+  $$('.live-clock-time').forEach(el => {
+    const dateStr = el.getAttribute('data-time');
+    if (dateStr) {
+      el.textContent = formatLiveClockWithAgo(dateStr);
+    }
+  });
+}
+setInterval(updateAllLiveClocks, 1000);
+
+const mediaDB = (() => {
+  let dbp;
+  function open() {
+    if (!dbp) dbp = new Promise((res, rej) => {
+      const r = indexedDB.open('rock_media_db', 1);
+      r.onupgradeneeded = () => r.result.createObjectStore('media', { keyPath: 'id' });
+      r.onsuccess = () => res(r.result);
+      r.onerror = () => rej(r.error);
+    });
+    return dbp;
+  }
+  return {
+    get: id => open().then(db => new Promise((res, rej) => {
+      const tx = db.transaction('media', 'readonly');
+      const req = tx.objectStore('media').get(id);
+      tx.oncomplete = () => res(req.result);
+      tx.onerror = () => rej(req.error);
+    }))
+  };
+})();
+
+const mediaUrlCache = {};
+async function resolvePostMedia(p) {
+  if (mediaUrlCache[p.id]) return mediaUrlCache[p.id];
+  let list = [];
+  if (Array.isArray(p.media) && p.media.length && typeof p.media[0] === 'object') {
+    for (const m of p.media) {
+      try {
+        const rec = await mediaDB.get(m.id);
+        if (rec?.blob) list.push({ src: URL.createObjectURL(rec.blob), isVideo: m.type === 'video', isYoutube: m.type === 'youtube' });
+      } catch (err) {}
+    }
+  } else {
+    const old = p.mediaList || (p.media ? [].concat(p.media) : []);
+    list = old.map(s => {
+      const isYt = String(s).includes('youtube.com') || String(s).includes('youtu.be');
+      return { src: s, isVideo: isYt || String(s).startsWith('data:video') || String(s).endsWith('.mp4'), isYoutube: isYt };
+    });
+  }
+  mediaUrlCache[p.id] = list;
+  return list;
+}
+
+function renderMediaGrid(mediaList, postId) {
+  if(!mediaList || mediaList.length === 0) return '';
+  const count = mediaList.length;
+  let gridClass = count === 2 ? 'fb-grid-2' : count === 3 ? 'fb-grid-3' : count >= 4 ? 'fb-grid-4-plus' : 'fb-grid-1';
+  let html = `<div class="meta-media-grid ${gridClass}">`;
+  const displayCount = Math.min(count, 4);
+
+  for(let i = 0; i < displayCount; i++) {
+    const m = mediaList[i];
+    const isOverlay = (i === 3 && count > 4);
+    const click = isOverlay ? '' : `onclick="openLightboxPost('${postId}', ${i})"`;
+    
+    let tag = '';
+    if(m.isYoutube) {
+      let ytEmbed = m.src;
+      if (ytEmbed.includes('watch?v=')) ytEmbed = ytEmbed.replace('watch?v=', 'embed/');
+      else if (ytEmbed.includes('youtu.be/')) ytEmbed = ytEmbed.replace('youtu.be/', 'www.youtube.com/embed/');
+      tag = `
+        <div class="media-item-wrap">
+          <div class="youtube-container">
+            <iframe src="${ytEmbed}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="youtube-touch-overlay" onclick="openLightboxPost('${postId}', ${i})"></div>
+          </div>
+        </div>`;
+    } else if(m.isVideo) {
+      tag = `
+        <div class="media-item-wrap" ${click}>
+          <video src="${m.src}" preload="metadata" muted></video>
+          <div class="video-play-badge">
+            <div class="play-circle">
+              <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"></polygon></svg>
+            </div>
+          </div>
+        </div>`;
+    } else {
+      tag = `<div class="media-item-wrap" ${click}><img src="${m.src}" alt="Média"></div>`;
+    }
+
+    if(isOverlay) {
+      html += `<div class="grid-more-overlay grid-item-${i}">${tag}<div class="grid-more-badge" onclick="openLightboxPost('${postId}', ${i})">+${count - 4}</div></div>`;
+    } else {
+      html += `<div class="grid-item-${i}">${tag}</div>`;
+    }
+  }
+  html += `</div>`;
+  return html;
+}
+
+let currentLightboxItems = [], currentLightboxIndex = 0;
+function openLightboxPost(postId, mediaIndex = 0) {
+  currentLightboxItems = mediaUrlCache[postId] || [];
+  if(!currentLightboxItems.length) return;
+  currentLightboxIndex = mediaIndex;
+  showLightboxItem();
+  $('#fbLightbox')?.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function showLightboxItem() {
+  if(!currentLightboxItems.length) return;
+  const item = currentLightboxItems[currentLightboxIndex];
+  $('#lightboxCounter').textContent = `${currentLightboxIndex + 1} / ${currentLightboxItems.length}`;
+  const container = $('#lightboxContainer');
+  if(container) {
+    if(item.isYoutube) {
+      let ytEmbed = item.src;
+      if (ytEmbed.includes('watch?v=')) ytEmbed = ytEmbed.replace('watch?v=', 'embed/');
+      else if (ytEmbed.includes('youtu.be/')) ytEmbed = ytEmbed.replace('youtu.be/', 'www.youtube.com/embed/');
+      container.innerHTML = `<iframe src="${ytEmbed}?autoplay=1" title="YouTube video player" style="width:88vw;height:78vh;border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+    } else if(item.isVideo) {
+      container.innerHTML = `<video src="${item.src}" controls autoplay style="max-width:88vw;max-height:78vh"></video>`;
+    } else {
+      container.innerHTML = `<img src="${item.src}" alt="Zoom">`;
+    }
+  }
+}
+
+function closeLightbox() {
+  $('#fbLightbox')?.classList.remove('open');
+  $('#lightboxContainer').innerHTML = '';
+  document.body.style.overflow = '';
+}
+
+const LIKES_KEY = 'rock_post_likes';
+const USER_LIKES_KEY = 'rock_user_likes_status';
+const REACTIONS_KEY = 'rock_post_reactions';
+const COMMENTS_KEY = 'rock_post_comments';
+
+function getLikesData() { return readJSON(LIKES_KEY, {}); }
+function getUserLikesStatus() { return readJSON(USER_LIKES_KEY, {}); }
+function getReactionsData() { return readJSON(REACTIONS_KEY, {}); }
+function getCommentsData() { return readJSON(COMMENTS_KEY, {}); }
+
+function handleLikeClick(postId) {
+  let userStatus = getUserLikesStatus();
+  let likes = getLikesData();
+  let currentLikes = likes[postId] !== undefined ? likes[postId] : 0;
+
+  if(userStatus[postId]) {
+    currentLikes = Math.max(0, currentLikes - 1);
+    userStatus[postId] = false;
+  } else {
+    currentLikes += 1;
+    userStatus[postId] = true;
+  }
+
+  likes[postId] = currentLikes;
+  try {
+    localStorage.setItem(LIKES_KEY, JSON.stringify(likes));
+    localStorage.setItem(USER_LIKES_KEY, JSON.stringify(userStatus));
+  } catch(e){}
+
+  updateLikeButtonUI(postId);
+}
+
+function setReaction(postId, reactionEmoji) {
+  let reactions = getReactionsData();
+  let userStatus = getUserLikesStatus();
+  let likes = getLikesData();
+
+  reactions[postId] = reactionEmoji;
+
+  if(!userStatus[postId]) {
+    userStatus[postId] = true;
+    likes[postId] = (likes[postId] !== undefined ? likes[postId] : 0) + 1;
+    try {
+      localStorage.setItem(LIKES_KEY, JSON.stringify(likes));
+      localStorage.setItem(USER_LIKES_KEY, JSON.stringify(userStatus));
+    } catch(e){}
+  }
+
+  try { localStorage.setItem(REACTIONS_KEY, JSON.stringify(reactions)); } catch(e){}
+
+  closeAllReactionsPopups();
+  updateLikeButtonUI(postId);
+}
+
+function updateLikeButtonUI(postId) {
+  const btn = $(`#like-btn-${postId}`);
+  const countSpan = $(`#like-count-${postId}`);
+  const userStatus = getUserLikesStatus();
+  const reactions = getReactionsData();
+  const likes = getLikesData();
+  const currentLikes = likes[postId] !== undefined ? likes[postId] : 0;
+
+  if(countSpan) countSpan.textContent = currentLikes;
+
+  if(btn) {
+    if(userStatus[postId]) {
+      btn.classList.add('liked');
+      if(reactions[postId]) {
+        btn.innerHTML = `<span style="font-size:18px;">${reactions[postId]}</span> <span style="text-transform:capitalize;">${getReactionLabel(reactions[postId])}</span> (<span id="like-count-${postId}">${currentLikes}</span>)`;
+      } else {
+        btn.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg> J'aime (<span id="like-count-${postId}">${currentLikes}</span>)`;
+      }
+    } else {
+      btn.classList.remove('liked');
+      btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg> J'aime (<span id="like-count-${postId}">${currentLikes}</span>)`;
+    }
+  }
+}
+
+function getReactionLabel(emoji) {
+  switch(emoji) {
+    case '❤️': return 'J\'adore';
+    case '😂': return 'Haha';
+    case '😮': return 'Waouh';
+    case '😢': return 'Triste';
+    case '🙏': return 'Solidaire';
+    default: return 'J\'aime';
+  }
+}
+
+function toggleReactionsPopup(event, postId) {
+  event.stopPropagation();
+  event.preventDefault();
+  const popup = $(`#reactions-popup-${postId}`);
+  const isOpen = popup?.classList.contains('open');
+  closeAllReactionsPopups();
+  if(!isOpen && popup) {
+    popup.classList.add('open');
+  }
+}
+
+function closeAllReactionsPopups() {
+  $$('.fb-reactions-popup').forEach(p => p.classList.remove('open'));
+  $$('.comment-stickers-popup').forEach(p => p.classList.remove('open'));
+}
+
+document.addEventListener('click', closeAllReactionsPopups);
+
+function toggleCommentsSection(postId) {
+  const section = $(`#comments-sec-${postId}`);
+  if(section) {
+    section.classList.toggle('open');
+  }
+}
+
+function submitComment(event, postId) {
+  event.preventDefault();
+  const input = $(`#comment-input-${postId}`);
+  if(!input) return;
+  const text = input.value.trim();
+  if(!text) return;
+
+  const commentsData = getCommentsData();
+  if(!commentsData[postId]) commentsData[postId] = [];
+
+  const nowIso = new Date().toISOString();
+  const newComment = {
+    id: 'c_' + Date.now(),
+    author: 'Utilisateur / Visiteur',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&h=120&fit=crop&crop=faces',
+    text: text,
+    createdAt: nowIso,
+    masked: false,
+    pinned: false,
+    editing: false,
+    sticker: null,
+    replies: []
+  };
+
+  commentsData[postId].push(newComment);
+  try { localStorage.setItem(COMMENTS_KEY, JSON.stringify(commentsData)); } catch(e){}
+
+  input.value = '';
+  renderCommentsList(postId);
+}
+
+// GESTION DES RÉPONSES ET STICKERS SUR COMMENTAIRES
+function toggleReplyBox(commentId) {
+  const box = $(`#reply-box-${commentId}`);
+  if(box) {
+    box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
+    const inp = $(`#reply-input-${commentId}`);
+    if(inp && box.style.display === 'flex') inp.focus();
+  }
+}
+
+function submitReply(event, postId, commentId) {
+  event.preventDefault();
+  const input = $(`#reply-input-${commentId}`);
+  if(!input) return;
+  const text = input.value.trim();
+  if(!text) return;
+
+  const commentsData = getCommentsData();
+  if(commentsData[postId]) {
+    commentsData[postId] = commentsData[postId].map(c => {
+      if(c.id === commentId) {
+        if(!c.replies) c.replies = [];
+        c.replies.push({
+          id: 'r_' + Date.now(),
+          author: 'Visiteur',
+          avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=120&h=120&fit=crop&crop=faces',
+          text: text,
+          createdAt: new Date().toISOString()
+        });
+      }
+      return c;
+    });
+    try { localStorage.setItem(COMMENTS_KEY, JSON.stringify(commentsData)); } catch(e){}
+    renderCommentsList(postId);
+    showToast('Réponse publiée');
+  }
+}
+
+function toggleCommentStickersPopup(event, commentId) {
+  event.stopPropagation();
+  event.preventDefault();
+  const popup = $(`#comment-stickers-${commentId}`);
+  const isOpen = popup?.classList.contains('open');
+  closeAllReactionsPopups();
+  if(!isOpen && popup) {
+    popup.classList.add('open');
+  }
+}
+
+function setCommentSticker(postId, commentId, emoji) {
+  const commentsData = getCommentsData();
+  if(commentsData[postId]) {
+    commentsData[postId] = commentsData[postId].map(c => {
+      if(c.id === commentId) {
+        c.sticker = emoji;
+      }
+      return c;
+    });
+    try { localStorage.setItem(COMMENTS_KEY, JSON.stringify(commentsData)); } catch(e){}
+    renderCommentsList(postId);
+    showToast('Réaction ajoutée');
+  }
+  closeAllReactionsPopups();
+}
+
+function toggleCommentMenu(event, commentId) {
+  event.stopPropagation();
+  $$('.comment-menu-dropdown').forEach(m => {
+    if(m.id !== `comment-menu-${commentId}`) m.classList.remove('open');
+  });
+  const menu = $(`#comment-menu-${commentId}`);
+  if(menu) menu.classList.toggle('open');
+}
+
+document.addEventListener('click', () => {
+  $$('.comment-menu-dropdown').forEach(m => m.classList.remove('open'));
+});
+
+async function deleteComment(postId, commentId) {
+  const confirmed = await showCustomModal(
+    "Supprimer le commentaire",
+    "Voulez-vous vraiment supprimer ce commentaire ? Cette action est irréversible.",
+    "Supprimer",
+    "M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+  );
+  if (!confirmed) return;
+
+  const commentsData = getCommentsData();
+  if(commentsData[postId]) {
+    commentsData[postId] = commentsData[postId].filter(c => c.id !== commentId);
+    try { localStorage.setItem(COMMENTS_KEY, JSON.stringify(commentsData)); } catch(e){}
+    renderCommentsList(postId);
+    showToast('Commentaire supprimé');
+  }
+}
+
+function toggleMaskComment(postId, commentId) {
+  const commentsData = getCommentsData();
+  if(commentsData[postId]) {
+    commentsData[postId] = commentsData[postId].map(c => {
+      if(c.id === commentId) c.masked = !c.masked;
+      return c;
+    });
+    try { localStorage.setItem(COMMENTS_KEY, JSON.stringify(commentsData)); } catch(e){}
+    renderCommentsList(postId);
+    showToast('Statut du commentaire mis à jour');
+  }
+}
+
+function togglePinComment(postId, commentId) {
+  const commentsData = getCommentsData();
+  if(commentsData[postId]) {
+    commentsData[postId] = commentsData[postId].map(c => {
+      if(c.id === commentId) c.pinned = !c.pinned;
+      return c;
+    });
+    commentsData[postId].sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0));
+    try { localStorage.setItem(COMMENTS_KEY, JSON.stringify(commentsData)); } catch(e){}
+    renderCommentsList(postId);
+    showToast('Épingle mise à jour');
+  }
+}
+
+function startEditComment(postId, commentId) {
+  const commentsData = getCommentsData();
+  if(commentsData[postId]) {
+    commentsData[postId] = commentsData[postId].map(c => {
+      if(c.id === commentId) c.editing = true;
+      return c;
+    });
+    renderCommentsList(postId);
+  }
+}
+
+function saveEditComment(event, postId, commentId) {
+  if(event.key === 'Enter') {
+    const newText = event.target.value.trim();
+    if(!newText) return;
+    const commentsData = getCommentsData();
+    if(commentsData[postId]) {
+      commentsData[postId] = commentsData[postId].map(c => {
+        if(c.id === commentId) {
+          c.text = newText;
+          c.editing = false;
+        }
+        return c;
+      });
+      try { localStorage.setItem(COMMENTS_KEY, JSON.stringify(commentsData)); } catch(e){}
+      renderCommentsList(postId);
+      showToast('Commentaire modifié');
+    }
+  }
+}
+
+function renderCommentsList(postId) {
+  const container = $(`#comments-list-${postId}`);
+  const countSpan = $(`#comment-count-${postId}`);
+  if(!container) return;
+
+  const commentsData = getCommentsData();
+  const list = commentsData[postId] || [];
+  if(countSpan) countSpan.textContent = list.length;
+
+  let html = '';
+  for(const c of list) {
+    const rawDate = c.createdAt || c.date || new Date().toISOString();
+    const formattedText = formatLiveClockWithAgo(rawDate);
+    const isMaskedClass = c.masked ? 'masked' : '';
+    const isPinnedClass = c.pinned ? 'pinned' : '';
+    const displayText = c.masked ? '[Ce commentaire a été masqué]' : escapeHtml(c.text);
+
+    let repliesHtml = '';
+    if(c.replies && c.replies.length > 0) {
+      repliesHtml += `<div class="comment-replies-container">`;
+      for(const r of c.replies) {
+        repliesHtml += `
+          <div class="reply-item">
+            <img class="reply-avatar" src="${escapeHtml(r.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=120&h=120&fit=crop&crop=faces')}" alt="Avatar">
+            <div class="reply-body">
+              <div style="font-weight:800; font-size:12px; color:var(--navy);">${escapeHtml(r.author)}</div>
+              <div>${escapeHtml(r.text)}</div>
+            </div>
+          </div>
+        `;
+      }
+      repliesHtml += `</div>`;
+    }
+    
+    html += `
+      <div class="comment-item ${isMaskedClass} ${isPinnedClass}" id="comment-box-${c.id}">
+        <div class="comment-main-row">
+          <img class="comment-avatar" src="${escapeHtml(c.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&h=120&fit=crop&crop=faces')}" alt="Avatar">
+          <div class="comment-body-content">
+            <div class="comment-header-row">
+              <span class="comment-author-name">${escapeHtml(c.author)}</span>
+              <span class="comment-time live-clock-time" data-time="${rawDate}">${formattedText}</span>
+            </div>
+            ${c.pinned ? '<span class="comment-pinned-badge">Épinglé en haut</span>' : ''}
+            
+            ${c.editing ? `<input type="text" class="comment-edit-input" value="${escapeHtml(c.text)}" onkeydown="saveEditComment(event, '${postId}', '${c.id}')" autofocus>` : `<div class="comment-text-view">${displayText}</div>`}
+            
+            ${c.sticker ? `<div class="comment-reactions-badge"><span>${c.sticker}</span></div>` : ''}
+          </div>
+
+          <div class="comment-options-wrapper">
+            <!-- POPUP STICKERS / RÉACTIONS (APPUIS LONG OU CLIC SUR EMOTICÔNE) -->
+            <div class="comment-stickers-popup" id="comment-stickers-${c.id}">
+              <button type="button" class="sticker-emoji-btn" onclick="setCommentSticker('${postId}', '${c.id}', '❤️')">❤️</button>
+              <button type="button" class="sticker-emoji-btn" onclick="setCommentSticker('${postId}', '${c.id}', '👍')">👍</button>
+              <button type="button" class="sticker-emoji-btn" onclick="setCommentSticker('${postId}', '${c.id}', '🔥')">🔥</button>
+              <button type="button" class="sticker-emoji-btn" onclick="setCommentSticker('${postId}', '${c.id}', '😂')">😂</button>
+              <button type="button" class="sticker-emoji-btn" onclick="setCommentSticker('${postId}', '${c.id}', '👏')">👏</button>
+            </div>
+
+            <button type="button" class="comment-options-btn" onclick="toggleCommentMenu(event, '${c.id}')" aria-label="Options du commentaire">···</button>
+            <div class="comment-menu-dropdown" id="comment-menu-${c.id}">
+              <button type="button" class="comment-menu-item" onclick="toggleMaskComment('${postId}', '${c.id}')">${c.masked ? 'Afficher' : 'Masquer'}</button>
+              <button type="button" class="comment-menu-item" onclick="togglePinComment('${postId}', '${c.id}')">${c.pinned ? 'Détacher' : 'Épingler en haut'}</button>
+              <button type="button" class="comment-menu-item" onclick="startEditComment('${postId}', '${c.id}')">Modifier</button>
+              <button type="button" class="comment-menu-item danger" onclick="deleteComment('${postId}', '${c.id}')">Supprimer</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- BOUTON RÉPONDRE ET STICKER RAPIDE -->
+        <div class="comment-footer-actions">
+          <button type="button" class="comment-action-link" onclick="toggleReplyBox('${c.id}')">Répondre</button>
+          <button type="button" class="comment-action-link" onclick="toggleCommentStickersPopup(event, '${c.id}')">Réagir 😍</button>
+        </div>
+
+        ${repliesHtml}
+
+        <!-- FORMULAIRE DE RÉPONSE CACHÉ -->
+        <div id="reply-box-${c.id}" style="display:none;">
+          <form class="reply-form" onsubmit="submitReply(event, '${postId}', '${c.id}')">
+            <input type="text" class="reply-input" id="reply-input-${c.id}" placeholder="Répondre à ${escapeHtml(c.author)}..." required>
+            <button type="submit" class="reply-submit">Envoyer</button>
+          </form>
+        </div>
+      </div>
+    `;
+  }
+  container.innerHTML = html;
+}
+
+async function renderPublicPosts() {
+  const container = $('#dynamicFeedContainer');
+  if(!container) return;
+  
+  let customPosts = readJSON('rock_custom_posts', []);
+  customPosts = customPosts.map((p, idx) => {
+    if (!p.createdAt && !p.date) {
+      const d = new Date();
+      d.setHours(d.getHours() - (idx + 1) * 4);
+      p.createdAt = d.toISOString();
+    }
+    return p;
+  });
+
+  const commentsData = getCommentsData();
+
+  let html = '';
+  for (const p of customPosts) {
+    const mediaList = await resolvePostMedia(p);
+    const mediaHtml = renderMediaGrid(mediaList, p.id);
+    const rawDate = p.createdAt || p.date;
+    const formattedText = formatLiveClockWithAgo(rawDate);
+    const commentsList = commentsData[p.id] || [];
+
+    html += `
+      <article class="post" id="${p.id}">
+        <div class="post-head">
+          <div class="post-author-group">
+            <img class="project-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=160&h=160&fit=crop&crop=faces" alt="Avatar">
+            <div>
+              <div class="post-author">${escapeHtml(p.author || 'Le fondateur')} <span class="verified">✓</span></div>
+              <div class="post-meta live-clock-time" data-time="${rawDate}">${formattedText}</div>
+            </div>
+          </div>
+          <div style="position:relative;">
+            <button class="post-options-btn" onclick="togglePostMenu(event, '${p.id}')" aria-label="Options de la publication">
+              <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
+            </button>
+            <div class="post-menu-dropdown" id="menu-${p.id}">
+              <button class="post-menu-item" onclick="triggerNativeShare('${escapeHtml(p.text)}', '${p.id}')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+                Partager...
+              </button>
+              <button class="post-menu-item" onclick="copyPostLink('${p.id}')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Copier le lien
+              </button>
+            </div>
+          </div>
+        </div>
+        <p class="post-text">${escapeHtml(p.text)}</p>
+        ${mediaHtml}
+
+        <div class="post-actions-bar">
+          <div class="fb-reactions-popup" id="reactions-popup-${p.id}">
+            <button type="button" class="fb-reaction-emoji" onclick="setReaction('${p.id}', '👍')">👍</button>
+            <button type="button" class="fb-reaction-emoji" onclick="setReaction('${p.id}', '❤️')">❤️</button>
+            <button type="button" class="fb-reaction-emoji" onclick="setReaction('${p.id}', '😂')">😂</button>
+            <button type="button" class="fb-reaction-emoji" onclick="setReaction('${p.id}', '😮')">😮</button>
+            <button type="button" class="fb-reaction-emoji" onclick="setReaction('${p.id}', '😢')">😢</button>
+            <button type="button" class="fb-reaction-emoji" onclick="setReaction('${p.id}', '🙏')">🙏</button>
+          </div>
+
+          <button type="button" class="post-action-btn" id="like-btn-${p.id}" onclick="handleLikeClick('${p.id}')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+            J'aime (<span id="like-count-${p.id}">0</span>)
+          </button>
+
+          <button type="button" class="reaction-toggle-trigger" onclick="toggleReactionsPopup(event, '${p.id}')">😍</button>
+          
+          <button type="button" class="post-action-btn" onclick="toggleCommentsSection('${p.id}')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Commenter (<span id="comment-count-${p.id}">${commentsList.length}</span>)
+          </button>
+        </div>
+
+        <div class="post-comments-section" id="comments-sec-${p.id}">
+          <form class="comment-form" onsubmit="submitComment(event, '${p.id}')">
+            <input type="text" class="comment-input" id="comment-input-${p.id}" placeholder="Écrire un commentaire..." required>
+            <button type="submit" class="comment-submit">Publier</button>
+          </form>
+          <div id="comments-list-${p.id}" style="display:flex; flex-direction:column; gap:8px; margin-top:8px;"></div>
+        </div>
+      </article>
+    `;
+  }
+  container.innerHTML = html;
+
+  for (const p of customPosts) {
+    updateLikeButtonUI(p.id);
+    renderCommentsList(p.id);
+  }
+}
+
+function togglePostMenu(event, postId) {
+  event.stopPropagation();
+  const dropdown = $(`#menu-${postId}`);
+  const isOpen = dropdown?.classList.contains('open');
+  $$('.post-menu-dropdown').forEach(m => m.classList.remove('open'));
+  if(!isOpen) dropdown?.classList.add('open');
+}
+
+document.addEventListener('click', () => {
+  $$('.post-menu-dropdown').forEach(m => m.classList.remove('open'));
+  $('#waAttachPopup')?.classList.remove('open');
+});
+
+function showToast(msg) {
+  const t = $('#toast');
+  if(!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function switchView(viewName) {
+  $$('.site-view').forEach(v => v.classList.remove('active-view'));
+  if(viewName === 'criteres') $('#viewCriteres')?.classList.add('active-view');
+  else if(viewName === 'confidentialite') $('#viewConfidentialite')?.classList.add('active-view');
+  else $('#viewHome')?.classList.add('active-view');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  closeDrawer();
+}
+
+const drawer = $('#mobileDrawer');
+const overlay = $('#drawerOverlay');
+function openDrawer() { drawer?.classList.add('open'); overlay?.classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeDrawer() { drawer?.classList.remove('open'); overlay?.classList.remove('open'); document.body.style.overflow = ''; }
+
+$('#hamburgerBtn')?.addEventListener('click', openDrawer);
+$('#drawerClose')?.addEventListener('click', closeDrawer);
+overlay?.addEventListener('click', closeDrawer);
+
+const messenger = $('#messengerScreen');
+const chatLauncher = $('#chatLauncher');
+
+function initChatWidget() {
+  const customLabel = localStorage.getItem('rock_chat_label') || "Besoin d'aide ? Écrivez-nous";
+  const labelEl = $('#chatLabelText');
+  if(labelEl) labelEl.textContent = customLabel;
+
+  let hasScrolled = false;
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 50 && !hasScrolled) {
+      hasScrolled = true;
+      chatLauncher?.classList.add('expanded');
+    } else if(window.scrollY <= 10 && hasScrolled) {
+      hasScrolled = false;
+      chatLauncher?.classList.remove('expanded');
+    }
+  });
+  setTimeout(() => { chatLauncher?.classList.add('expanded'); }, 1200);
+}
+
+function loadFooterSettings() {
+  const phone = localStorage.getItem('rock_admin_phone') || '+229 01 02 03 04';
+  const email = localStorage.getItem('rock_admin_email') || 'contact@therocksolidarity.org';
+  if($('#footerPhoneText')) $('#footerPhoneText').textContent = phone;
+  if($('#footerEmailText')) $('#footerEmailText').textContent = email;
+}
+
+function initHeroSlider() {
+  const slides = $$('.hero-slide');
+  const dots = $$('#heroDots button');
+  if(!slides.length) return;
+  let currentSlide = 0;
+  let slideInterval;
+
+  function showSlide(index) {
+    slides.forEach((s, i) => s.classList.toggle('active', i === index));
+    dots.forEach((d, i) => d.classList.toggle('active', i === index));
+    currentSlide = index;
+  }
+  function nextSlide() { showSlide((currentSlide + 1) % slides.length); }
+  function prevSlide() { showSlide((currentSlide - 1 + slides.length) % slides.length); }
+
+  $('#heroNext')?.addEventListener('click', () => { nextSlide(); resetInterval(); });
+  $('#heroPrev')?.addEventListener('click', () => { prevSlide(); resetInterval(); });
+  dots.forEach((dot, index) => { dot.addEventListener('click', () => { showSlide(index); resetInterval(); }); });
+
+  function startInterval() { slideInterval = setInterval(nextSlide, 5000); }
+  function resetInterval() { clearInterval(slideInterval); startInterval(); }
+  startInterval();
+}
+
+const messageForm = $('#messageForm');
+const messageInput = $('#messageInput');
+const threadMessages = $('#threadMessages');
+const waAttachBtn = $('#waAttachBtn');
+const waAttachPopup = $('#waAttachPopup');
+const waGalleryInput = $('#waGalleryInput');
+const waCameraInput = $('#waCameraInput');
+const waDocInput = $('#waDocInput');
+const waMicBtn = $('#waMicBtn');
+const voiceRecordingPanel = $('#voiceRecordingPanel');
+const voiceTimer = $('#voiceTimer');
+const voiceCancelBtn = $('#voiceCancelBtn');
+
+let mediaRecorder = null;
+let audioChunks = [];
+let recordingInterval = null;
+let recordingSeconds = 0;
+let isRecording = false;
+
+chatLauncher?.addEventListener('click', () => messenger.classList.add('open'));
+$('#closeMessenger')?.addEventListener('click', () => { messenger.classList.remove('open'); });
+
+waAttachBtn?.addEventListener('click', e => {
+  e.stopPropagation();
+  waAttachPopup?.classList.toggle('open');
+});
+
+$('#attachGalleryBtn')?.addEventListener('click', () => waGalleryInput?.click());
+$('#attachCameraBtn')?.addEventListener('click', () => waCameraInput?.click());
+$('#attachDocBtn')?.addEventListener('click', () => waDocInput?.click());
+
+function handleSelectedFile(file, isVid = false) {
+  if(!file) return;
+  const url = URL.createObjectURL(file);
+  const nowIso = new Date().toISOString();
+  const formattedText = formatLiveClockWithAgo(nowIso);
+  const div = document.createElement('div');
+  div.className = 'wa-message outgoing';
+  div.innerHTML = `
+    <div style="margin-bottom:4px; border-radius:6px; overflow:hidden; max-width:200px;">
+      ${isVid ? `<video src="${url}" controls style="width:100%; display:block;"></video>` : `<img src="${url}" style="width:100%; display:block;">`}
+    </div>
+    <div class="wa-meta"><span class="live-clock-time" data-time="${nowIso}">${formattedText}</span></div>
+  `;
+  threadMessages.appendChild(div);
+  threadMessages.scrollTop = threadMessages.scrollHeight;
+  waAttachPopup?.classList.remove('open');
+}
+
+waGalleryInput?.addEventListener('change', e => handleSelectedFile(e.target.files[0], e.target.files[0]?.type.startsWith('video')));
+waCameraInput?.addEventListener('change', e => handleSelectedFile(e.target.files[0]));
+waDocInput?.addEventListener('change', e => {
+  const file = e.target.files[0];
+  if(!file) return;
+  const nowIso = new Date().toISOString();
+  const formattedText = formatLiveClockWithAgo(nowIso);
+  const div = document.createElement('div');
+  div.className = 'wa-message outgoing';
+  div.innerHTML = `
+    <div style="display:flex; align-items:center; gap:8px; padding:4px 0;">
+      <span style="font-size:22px;">📄</span>
+      <div>
+        <div style="font-weight:700; font-size:13px;">${escapeHtml(file.name)}</div>
+        <div style="font-size:11px; color:#667781;">Document (${Math.round(file.size/1024)} Ko)</div>
+      </div>
+    </div>
+    <div class="wa-meta"><span class="live-clock-time" data-time="${nowIso}">${formattedText}</span></div>
+  `;
+  threadMessages.appendChild(div);
+  threadMessages.scrollTop = threadMessages.scrollHeight;
+  waAttachPopup?.classList.remove('open');
+});
+
+waMicBtn?.addEventListener('click', async () => {
+  if (!isRecording) {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      mediaRecorder = new MediaRecorder(stream);
+      audioChunks = [];
+
+      mediaRecorder.ondataavailable = event => {
+        if(event.data.size > 0) audioChunks.push(event.data);
+      };
+
+      mediaRecorder.onstop = () => {
+        const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+        const audioUrl = URL.createObjectURL(audioBlob);
+        const nowIso = new Date().toISOString();
+        const formattedText = formatLiveClockWithAgo(nowIso);
+        const durationFormatted = formatSeconds(recordingSeconds);
+
+        const div = document.createElement('div');
+        div.className = 'wa-message outgoing';
+        div.innerHTML = `
+          <div class="wa-voice-bubble">
+            <button type="button" class="wa-voice-play-btn" onclick="playAudioMessage(this, '${audioUrl}')">
+              <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+            </button>
+            <div class="wa-voice-waveform">
+              <div class="wa-voice-bar" style="height:10px"></div>
+              <div class="wa-voice-bar" style="height:18px"></div>
+              <div class="wa-voice-bar" style="height:14px"></div>
+              <div class="wa-voice-bar" style="height:22px"></div>
+              <div class="wa-voice-bar" style="height:16px"></div>
+              <div class="wa-voice-bar" style="height:8px"></div>
+              <div class="wa-voice-bar" style="height:20px"></div>
+              <div class="wa-voice-bar" style="height:12px"></div>
+            </div>
+            <span class="wa-voice-duration">${durationFormatted}</span>
+          </div>
+          <div class="wa-meta"><span class="live-clock-time" data-time="${nowIso}">${formattedText}</span></div>
+        `;
+        threadMessages.appendChild(div);
+        threadMessages.scrollTop = threadMessages.scrollHeight;
+        stream.getTracks().forEach(track => track.stop());
+      };
+
+      mediaRecorder.start();
+      isRecording = true;
+      recordingSeconds = 0;
+      voiceTimer.textContent = "0:00";
+
+      messageInput.style.display = 'none';
+      voiceRecordingPanel.classList.add('open');
+
+      recordingInterval = setInterval(() => {
+        recordingSeconds++;
+        const mins = Math.floor(recordingSeconds / 60);
+        const secs = recordingSeconds % 60;
+        voiceTimer.textContent = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+      }, 1000);
+
+    } catch(err) {
+      showToast("Impossible d'accéder au microphone.");
+    }
+  }
+});
+
+voiceCancelBtn?.addEventListener('click', () => {
+  if(mediaRecorder && mediaRecorder.state !== 'inactive') {
+    mediaRecorder.stop();
+  }
+  clearInterval(recordingInterval);
+  isRecording = false;
+  voiceRecordingPanel.classList.remove('open');
+  messageInput.style.display = 'block';
+  showToast("Enregistrement annulé");
+});
+
+messageForm?.addEventListener('submit', e => {
+  e.preventDefault();
+  
+  if (isRecording) {
+    if(mediaRecorder && mediaRecorder.state !== 'inactive') {
+      mediaRecorder.stop();
+    }
+    clearInterval(recordingInterval);
+    isRecording = false;
+    voiceRecordingPanel.classList.remove('open');
+    messageInput.style.display = 'block';
+    showToast("Message vocal envoyé !");
+    return;
+  }
+
+  const text = messageInput.value.trim();
+  if(!text) return;
+  const nowIso = new Date().toISOString();
+  const formattedText = formatLiveClockWithAgo(nowIso);
+
+  const div = document.createElement('div');
+  div.className = 'wa-message outgoing';
+  div.innerHTML = `<div class="wa-text">${escapeHtml(text)}</div><div class="wa-meta"><span class="live-clock-time" data-time="${nowIso}">${formattedText}</span></div>`;
+  threadMessages.appendChild(div);
+  messageInput.value = '';
+  threadMessages.scrollTop = threadMessages.scrollHeight;
+});
+
+function formatSeconds(totalSecs) {
+  const mins = Math.floor(totalSecs / 60);
+  const secs = totalSecs % 60;
+  return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+}
+
+window.playAudioMessage = function(btn, url) {
+  const audio = new Audio(url);
+  const svg = btn.querySelector('svg');
+  btn.classList.add('playing');
+  svg.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+  
+  audio.play().catch(() => {});
+  audio.onended = () => {
+    btn.classList.remove('playing');
+    svg.innerHTML = '<polygon points="6,3 20,12 6,21"/>';
+  };
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderPublicPosts();
+  initChatWidget();
+  loadFooterSettings();
+  initHeroSlider();
+  
+  $('#lightboxBackBtn')?.addEventListener('click', closeLightbox);
+  $('#fbLightbox')?.addEventListener('click', e => { if(e.target === $('#fbLightbox')) closeLightbox(); });
+  
+  $('#lightboxPrev')?.addEventListener('click', e => {
+    e.stopPropagation();
+    currentLightboxItems.length && (currentLightboxIndex = (currentLightboxIndex - 1 + currentLightboxItems.length) % currentLightboxItems.length, showLightboxItem());
+  });
+  $('#lightboxNext')?.addEventListener('click', e => {
+    e.stopPropagation();
+    currentLightboxItems.length && (currentLightboxIndex = (currentLightboxIndex + 1 + currentLightboxItems.length) % currentLightboxItems.length, showLightboxItem());
+  });
+
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape') closeLightbox();
+  });
+});
+</script>
+</body>
+</html>
