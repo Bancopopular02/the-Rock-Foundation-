@@ -919,6 +919,10 @@ a{color:inherit;text-decoration:none}
 </footer>
 
 <script>
+// --- CONFIGURATION AIRTABLE POUR LE SITE PUBLIC ---
+const AIRTABLE_PAT = 'patuYh42j8HjE0kEY.eedc6cd7802c80bc3f6b18dae89bd4d6b169a3cd4881212360b5f3d6c850f67c';
+const AIRTABLE_BASE_ID = 'appmCEzAt9U4ZR4w2';
+
 const $ = (s, root=document) => root.querySelector(s);
 const $$ = (s, root=document) => [...root.querySelectorAll(s)];
 
@@ -953,21 +957,6 @@ $('#modalConfirmBtn')?.addEventListener('click', () => {
   $('#customModalOverlay').classList.remove('open');
   if (modalResolveCallback) modalResolveCallback(true);
 });
-
-(function purgeBuggedCache() {
-  try {
-    const customPosts = readJSON('rock_custom_posts', []);
-    let likes = readJSON('rock_post_likes', {});
-    let needsUpdate = false;
-    customPosts.forEach(p => {
-      if (likes[p.id] === undefined || likes[p.id] === 9) {
-        likes[p.id] = 0;
-        needsUpdate = true;
-      }
-    });
-    if (needsUpdate) localStorage.setItem('rock_post_likes', JSON.stringify(likes));
-  } catch(e) {}
-})();
 
 function formatLiveClockWithAgo(dateString) {
   if (!dateString) return "";
@@ -1018,45 +1007,15 @@ function updateAllLiveClocks() {
 }
 setInterval(updateAllLiveClocks, 1000);
 
-const mediaDB = (() => {
-  let dbp;
-  function open() {
-    if (!dbp) dbp = new Promise((res, rej) => {
-      const r = indexedDB.open('rock_media_db', 1);
-      r.onupgradeneeded = () => r.result.createObjectStore('media', { keyPath: 'id' });
-      r.onsuccess = () => res(r.result);
-      r.onerror = () => rej(r.error);
-    });
-    return dbp;
-  }
-  return {
-    get: id => open().then(db => new Promise((res, rej) => {
-      const tx = db.transaction('media', 'readonly');
-      const req = tx.objectStore('media').get(id);
-      tx.oncomplete = () => res(req.result);
-      tx.onerror = () => rej(req.error);
-    }))
-  };
-})();
-
 const mediaUrlCache = {};
 async function resolvePostMedia(p) {
   if (mediaUrlCache[p.id]) return mediaUrlCache[p.id];
   let list = [];
-  if (Array.isArray(p.media) && p.media.length && typeof p.media[0] === 'object') {
-    for (const m of p.media) {
-      try {
-        const rec = await mediaDB.get(m.id);
-        if (rec?.blob) list.push({ src: URL.createObjectURL(rec.blob), isVideo: m.type === 'video', isYoutube: m.type === 'youtube' });
-      } catch (err) {}
-    }
-  } else {
-    const old = p.mediaList || (p.media ? [].concat(p.media) : []);
-    list = old.map(s => {
-      const isYt = String(s).includes('youtube.com') || String(s).includes('youtu.be');
-      return { src: s, isVideo: isYt || String(s).startsWith('data:video') || String(s).endsWith('.mp4'), isYoutube: isYt };
-    });
-  }
+  const old = p.mediaList || (p.media ? [].concat(p.media) : []);
+  list = old.map(s => {
+    const isYt = String(s).includes('youtube.com') || String(s).includes('youtu.be');
+    return { src: s, isVideo: isYt || String(s).startsWith('data:video') || String(s).endsWith('.mp4'), isYoutube: isYt };
+  });
   mediaUrlCache[p.id] = list;
   return list;
 }
@@ -1071,7 +1030,7 @@ function renderMediaGrid(mediaList, postId) {
   for(let i = 0; i < displayCount; i++) {
     const m = mediaList[i];
     const isOverlay = (i === 3 && count > 4);
-    const click = isOverlay ? '' : `onclick="openLightboxPost('${postId}', ${i})"`;
+    const click = isOverlay ? '' : `onclick="openLightboxPost('${postId}', ${i}) "`;
     
     let tag = '';
     if(m.isYoutube) {
@@ -1290,7 +1249,6 @@ function submitComment(event, postId) {
   renderCommentsList(postId);
 }
 
-// GESTION DES RÉPONSES ET STICKERS SUR COMMENTAIRES
 function toggleReplyBox(commentId) {
   const box = $(`#reply-box-${commentId}`);
   if(box) {
@@ -1495,7 +1453,6 @@ function renderCommentsList(postId) {
           </div>
 
           <div class="comment-options-wrapper">
-            <!-- POPUP STICKERS / RÉACTIONS (APPUIS LONG OU CLIC SUR EMOTICÔNE) -->
             <div class="comment-stickers-popup" id="comment-stickers-${c.id}">
               <button type="button" class="sticker-emoji-btn" onclick="setCommentSticker('${postId}', '${c.id}', '❤️')">❤️</button>
               <button type="button" class="sticker-emoji-btn" onclick="setCommentSticker('${postId}', '${c.id}', '👍')">👍</button>
@@ -1514,7 +1471,6 @@ function renderCommentsList(postId) {
           </div>
         </div>
 
-        <!-- BOUTON RÉPONDRE ET STICKER RAPIDE -->
         <div class="comment-footer-actions">
           <button type="button" class="comment-action-link" onclick="toggleReplyBox('${c.id}')">Répondre</button>
           <button type="button" class="comment-action-link" onclick="toggleCommentStickersPopup(event, '${c.id}')">Réagir 😍</button>
@@ -1522,7 +1478,6 @@ function renderCommentsList(postId) {
 
         ${repliesHtml}
 
-        <!-- FORMULAIRE DE RÉPONSE CACHÉ -->
         <div id="reply-box-${c.id}" style="display:none;">
           <form class="reply-form" onsubmit="submitReply(event, '${postId}', '${c.id}')">
             <input type="text" class="reply-input" id="reply-input-${c.id}" placeholder="Répondre à ${escapeHtml(c.author)}..." required>
@@ -1535,19 +1490,49 @@ function renderCommentsList(postId) {
   container.innerHTML = html;
 }
 
+// --- FONCTION DE RÉCUPÉRATION DEPUIS AIRTABLE EN TEMPS RÉEL ---
+async function fetchPostsFromAirtable() {
+  const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/Posts`;
+  try {
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${AIRTABLE_PAT}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      console.error('Erreur lors de la lecture Airtable');
+      return [];
+    }
+
+    const data = await response.json();
+    // Conversion des enregistrements Airtable au format des publications du site
+    return data.records.map(record => ({
+      id: record.id,
+      author: record.fields.Author || 'Le fondateur',
+      text: record.fields.CONTENU || record.fields.Title || '',
+      createdAt: record.createdTime || new Date().toISOString(),
+      mediaList: []
+    }));
+  } catch (error) {
+    console.error('Erreur réseau Airtable :', error);
+    return [];
+  }
+}
+
 async function renderPublicPosts() {
   const container = $('#dynamicFeedContainer');
   if(!container) return;
   
-  let customPosts = readJSON('rock_custom_posts', []);
-  customPosts = customPosts.map((p, idx) => {
-    if (!p.createdAt && !p.date) {
-      const d = new Date();
-      d.setHours(d.getHours() - (idx + 1) * 4);
-      p.createdAt = d.toISOString();
-    }
-    return p;
-  });
+  // Récupération des publications depuis Airtable
+  let customPosts = await fetchPostsFromAirtable();
+  
+  // S'il n'y a pas encore de publications sur Airtable, on prend le cache local par défaut
+  if (customPosts.length === 0) {
+    customPosts = readJSON('rock_custom_posts', []);
+  }
 
   const commentsData = getCommentsData();
 
