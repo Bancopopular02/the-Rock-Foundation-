@@ -35,9 +35,14 @@ a{color:inherit;text-decoration:none}
   backdrop-filter:blur(14px);
 }
 .left-nav-group{display:flex;align-items:center;gap:8px;min-width:0;flex:1}
-.hamburger-btn{background:transparent;border:0;width:38px;height:38px;border-radius:10px;display:grid;place-items:center;color:#071c4d;cursor:pointer;transition:background .2s;flex:none}
+.hamburger-btn{background:transparent;border:0;width:38px;height:38px;border-radius:10px;display:grid;place-items:center;color:#071c4d;cursor:pointer;transition:background .2s;flex:none;position:relative}
 .hamburger-btn:hover{background:#f1f4ff}
 .hamburger-btn svg{width:20px;height:20px}
+
+/* INDICATEUR APPUI LONG HAMBURGER */
+.hamburger-progress {
+  position: absolute; bottom: 0; left: 0; height: 3px; background: var(--blue); width: 0%; border-radius: 2px; transition: width 0.1s linear;
+}
 
 .brand{display:flex;align-items:center;gap:8px;min-width:0;flex:1}
 .brand-mark{width:34px;height:34px;flex:none}
@@ -53,6 +58,10 @@ a{color:inherit;text-decoration:none}
 .nav svg{width:18px;height:18px}
 
 .top-actions{display:flex;align-items:center;gap:6px;flex:none}
+.cta-apply-btn {
+  background: linear-gradient(135deg, #075bff, #06358c); color: #fff; border: 0; border-radius: 11px; padding: 9px 16px; font-size: 13px; font-weight: 750; cursor: pointer; transition: transform .2s, box-shadow .2s; box-shadow: 0 4px 12px rgba(7,91,255,0.25);
+}
+.cta-apply-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(7,91,255,0.35); }
 
 /* TIROIR LATÉRAL (BURGER MENU) */
 .mobile-drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:99;opacity:0;pointer-events:none;transition:opacity .3s ease;backdrop-filter:blur(2px)}
@@ -70,11 +79,100 @@ a{color:inherit;text-decoration:none}
 .drawer-item svg{width:20px;height:20px;color:var(--blue);flex:none}
 .drawer-divider{height:1px;background:#edf0f8;margin:10px 16px}
 
+/* PANNEAU ADMINISTRATEUR DANS LE MENU BURGER */
+.admin-nav-panel {
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 14px;
+  padding: 12px;
+  margin-top: 10px;
+}
+.admin-nav-panel.open { display: flex; }
+.admin-panel-title {
+  font-size: 13px; font-weight: 850; color: #1e293b; display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;
+}
+.admin-btn {
+  width: 100%; border: 0; border-radius: 10px; padding: 10px 14px; font-size: 12.5px; font-weight: 750; color: white; cursor: pointer; text-align: left;
+  display: flex; align-items: center; justify-content: space-between; transition: opacity .2s, transform .1s;
+}
+.admin-btn:hover { opacity: 0.9; }
+.admin-btn:active { transform: scale(0.98); }
+.admin-btn-blue { background: #075bff; }
+.admin-btn-purple { background: #7c3aed; }
+.admin-btn-green { background: #059669; }
+.admin-btn-orange { background: #d97706; }
+.admin-btn-pink { background: #db2777; }
+.admin-btn-teal { background: #0d9488; }
+
+/* MODALE DE FORMULAIRE ADMINISTRATEUR & CONNEXION */
+.admin-form-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(3px); z-index: 10000;
+  display: none; align-items: center; justify-content: center; padding: 16px;
+}
+.admin-form-overlay.open { display: flex; }
+.admin-form-card {
+  background: #ffffff; width: 100%; max-width: 440px; max-height: 90vh; overflow-y: auto; border-radius: 20px; padding: 24px;
+  box-shadow: 0 20px 40px rgba(7, 41, 105, 0.25); border: 1px solid #e2e8f5; animation: scaleUpModal 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+.admin-form-title { font-size: 17px; font-weight: 850; color: var(--navy); margin: 0 0 16px; display: flex; justify-content: space-between; align-items: center; }
+.admin-form-group { margin-bottom: 14px; display: flex; flex-direction: column; gap: 6px; }
+.admin-form-group label { font-size: 12.5px; font-weight: 700; color: #4a5568; }
+.admin-form-input, .admin-form-textarea, .admin-form-select {
+  width: 100%; border: 1px solid #cbd5e1; border-radius: 10px; padding: 10px 14px; font-size: 13.5px; outline: none; background: #f8fafc; color: #1e293b;
+}
+.admin-form-input:focus, .admin-form-textarea:focus, .admin-form-select:focus { border-color: var(--blue); background: #fff; }
+.admin-form-textarea { min-height: 100px; resize: vertical; }
+.admin-form-actions { display: flex; gap: 10px; margin-top: 20px; }
+
+/* BLOC DE STATISTIQUES DE TRANSPARENCE (CLIQUABLE POUR NOUVELLE PAGE) */
+.impact-stats-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 22px 0 26px 0;
+}
+.impact-stat-card {
+  border-radius: 16px;
+  padding: 18px 16px;
+  text-align: center;
+  box-shadow: 0 8px 22px rgba(7, 41, 105, 0.08);
+  border: 1px solid rgba(255,255,255,0.6);
+  transition: transform .2s, box-shadow .2s;
+  cursor: pointer;
+  position: relative;
+}
+.impact-stat-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(7, 41, 105, 0.15); }
+.impact-stat-card::after {
+  content: '📄 Voir la page de statistiques';
+  position: absolute; bottom: 6px; left: 0; right: 0; font-size: 9.5px; font-weight: 700; opacity: 0.7;
+}
+.impact-stat-card:nth-child(1) { background: linear-gradient(135deg, #eef4ff, #d9e7ff); color: #072d72; }
+.impact-stat-card:nth-child(2) { background: linear-gradient(135deg, #eefdf2, #d1fae5); color: #065f46; }
+.impact-stat-card:nth-child(3) { background: linear-gradient(135deg, #fffbeb, #fef3c7); color: #92400e; }
+
+.impact-stat-number { font-size: 24px; font-weight: 850; margin-bottom: 14px; letter-spacing: -0.5px; }
+.impact-stat-card:nth-child(1) .impact-stat-number { color: var(--blue); }
+.impact-stat-card:nth-child(2) .impact-stat-number { color: var(--green); }
+.impact-stat-card:nth-child(3) .impact-stat-number { color: #d97706; }
+
+.impact-stat-label { font-size: 12.5px; font-weight: 750; opacity: 0.85; }
+@media(max-width:700px){ .impact-stats-bar { grid-template-columns: 1fr; gap: 10px; } }
+
+/* GRAPHIQUES & CONTENEURS PAGE STATISTIQUES DÉDIÉE */
+.stats-chart-container { display: flex; flex-direction: column; gap: 14px; margin: 20px 0; }
+.chart-bar-row { display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 700; color: #4a5568; }
+.chart-bar-label { width: 130px; flex: none; text-align: right; }
+.chart-bar-track { flex: 1; background: #f1f4ff; height: 26px; border-radius: 13px; overflow: hidden; position: relative; border: 1px solid #e2e8f5; }
+.chart-bar-fill { height: 100%; background: linear-gradient(90deg, var(--blue), var(--blue2)); border-radius: 13px; display: flex; align-items: center; justify-content: flex-end; padding-right: 12px; color: white; font-size: 12px; font-weight: 800; transition: width 0.8s cubic-bezier(0.1, 0.9, 0.2, 1); }
+
 /* GESTION DES VUES */
 .site-view { display: none; }
 .site-view.active-view { display: block; }
 
-/* TITRE DE BIENVENUE ET CONFIANCE PROFESSIONNEL (POLICE GEORGIA, PLUS GRAND & DYNAMIQUE) */
+/* TITRE DE BIENVENUE ET CONFIANCE PROFESSIONNEL (POLICE GEORGIA) */
 .dynamic-welcome-header {
   text-align: center;
   margin: 22px 0 20px 0;
@@ -201,7 +299,10 @@ a{color:inherit;text-decoration:none}
   transition: background .2s;
 }
 .post-menu-item:hover { background: #f1f4ff; color: var(--blue); }
+.post-menu-item.danger { color: #dc2626; }
+.post-menu-item.danger:hover { background: #fee2e2; }
 .post-menu-item svg { width: 17px; height: 17px; color: var(--blue); flex: none; }
+.post-menu-item.danger svg { color: #dc2626; }
 
 .post-actions-bar {
   display: flex;
@@ -284,7 +385,7 @@ a{color:inherit;text-decoration:none}
 }
 .post-comments-section.open { display: flex; }
 
-/* COMMENTAIRES & OPTIONS AVANCÉES (RÉPONSES & STICKERS) */
+/* COMMENTAIRES & OPTIONS */
 .comment-item {
   background: #f8f9ff;
   border-radius: 12px;
@@ -310,7 +411,6 @@ a{color:inherit;text-decoration:none}
 .comment-text-view { word-break: break-word; line-height: 1.4; }
 .comment-edit-input { width: 100%; background: #fff; border: 1px solid var(--blue); border-radius: 8px; padding: 6px 10px; font-size: 13px; outline: none; margin-top: 4px; }
 
-/* STICKERS DE RÉACTION SUR COMMENTAIRE */
 .comment-reactions-badge {
   display: inline-flex;
   align-items: center;
@@ -337,7 +437,6 @@ a{color:inherit;text-decoration:none}
 .comment-action-link { background: none; border: 0; color: var(--muted); cursor: pointer; font-size: 12px; font-weight: 700; padding: 0; }
 .comment-action-link:hover { color: var(--blue); text-decoration: underline; }
 
-/* FIL DES RÉPONSES AUX COMMENTAIRES */
 .comment-replies-container {
   margin-left: 42px;
   display: flex;
@@ -385,7 +484,6 @@ a{color:inherit;text-decoration:none}
   cursor: pointer;
 }
 
-/* POPUP STICKERS / RÉACTIONS SUR COMMENTAIRE (STYLE TIKTOK / FB) */
 .comment-stickers-popup {
   position: absolute;
   bottom: 100%;
@@ -431,7 +529,7 @@ a{color:inherit;text-decoration:none}
 .comment-submit { background: var(--blue); color: white; border: 0; border-radius: 20px; padding: 0 16px; font-weight: 700; font-size: 12px; cursor: pointer; transition: background .2s; }
 .comment-submit:hover { background: #0647cc; }
 
-/* MODALE DE CONFIRMATION (SANS FOND NOIR NI FLOU) */
+/* MODALE DE CONFIRMATION */
 .custom-modal-overlay {
   position: fixed; inset: 0; background: transparent; backdrop-filter: none; z-index: 9999;
   display: none; align-items: center; justify-content: center; padding: 16px; pointer-events: none;
@@ -460,110 +558,18 @@ a{color:inherit;text-decoration:none}
 .custom-modal-btn.confirm { background: linear-gradient(135deg, #dc2626, #b91c1c); color: white; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3); }
 .custom-modal-btn.confirm:hover { background: linear-gradient(135deg, #ef4444, #dc2626); }
 
-/* BOUTON DE CHAT FLOTTANT */
+/* BOUTON DE CHAT FLOTTANT WHATSAPP */
 .chat-launcher{
   position:fixed; left:20px; bottom:20px; z-index:40; height:60px; min-width:60px;
-  background:linear-gradient(135deg,#075bff,#06358c); color:white; border:0; border-radius:30px;
-  box-shadow:0 10px 30px rgba(7, 91, 255, 0.4); display:flex; align-items:center; padding:0 18px 0 14px; gap:12px;
+  background:linear-gradient(135deg,#25D366,#128C7E); color:white; border:0; border-radius:30px;
+  box-shadow:0 10px 30px rgba(37, 211, 102, 0.4); display:flex; align-items:center; padding:0 18px 0 14px; gap:12px;
   cursor:pointer; overflow:hidden; transition:all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .chat-launcher svg{width:28px;height:28px;fill:currentColor;flex:none}
 .chat-label-text{font-size:13px;font-weight:750;white-space:nowrap;max-width:0;opacity:0;overflow:hidden;transition:max-width 0.4s ease, opacity 0.3s ease}
 .chat-launcher.expanded{max-width:400px}
 .chat-launcher.expanded .chat-label-text{max-width:300px;opacity:1}
-.chat-launcher:hover{transform:scale(1.03);box-shadow:0 14px 35px rgba(7, 91, 255, 0.5)}
-
-/* INTERFACE DE DISCUSSION STYLE WHATSAPP BUSINESS FIDÈLE */
-.messenger-screen{position:fixed;inset:0;z-index:150;background:#efeae2;display:none;flex-direction:column;color:#111b21}
-.messenger-screen.open{display:flex}
-
-.messenger-topbar{height:60px;background:#00a884;color:white;display:flex;align-items:center;justify-content:space-between;padding:0 15px;box-shadow:0 1px 3px rgba(0,0,0,0.15)}
-.messenger-brand{display:flex;align-items:center;gap:12px;cursor:pointer;min-width:0;flex:1}
-.messenger-brand img{width:40px;height:40px;border-radius:50%;object-fit:cover}
-
-.messenger-close{border:0;background:transparent;border-radius:50%;width:40px;height:40px;padding:0;color:white;display:grid;place-items:center;flex:none;cursor:pointer;transition:background .2s}
-.messenger-close:hover{background:rgba(255,255,255,0.18)}
-.messenger-close svg{width:24px;height:24px;fill:currentColor}
-
-.message-thread{flex:1;display:flex;flex-direction:column;max-width:800px;width:100%;margin:0 auto;background:#efeae2;overflow:hidden;position:relative}
-.thread-messages{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:10px;background-image:radial-gradient(#d4dad6 1px, transparent 1px);background-size:20px 20px}
-
-/* BULLES DE DISCUSSION */
-.wa-message{max-width:75%;min-width:140px;padding:8px 12px;border-radius:8px;font-size:13px;line-height:1.4;position:relative;box-shadow:0 1px 0.5px rgba(0,0,0,0.13);word-break:break-word}
-.wa-message.incoming{background:#ffffff;align-self:flex-start;border-top-left-radius:0;color:#111b21}
-.wa-message.outgoing{background:#d9fdd3;align-self:flex-end;border-top-right-radius:0;color:#111b21}
-.wa-text{white-space:pre-wrap}
-.wa-meta{display:flex;align-items:center;justify-content:flex-end;gap:3px;margin-top:2px;font-size:10px;color:#667781}
-
-/* LECTEUR VOCAL STYLE WHATSAPP RÉEL */
-.wa-voice-bubble { display: flex; align-items: center; gap: 10px; min-width: 210px; padding: 4px 0; }
-.wa-voice-play-btn { width: 36px; height: 36px; border-radius: 50%; background: #00a884; color: white; border: 0; display: grid; place-items: center; cursor: pointer; flex: none; transition: transform .15s; }
-.wa-voice-play-btn:hover { transform: scale(1.08); }
-.wa-voice-play-btn svg { width: 16px; height: 16px; fill: currentColor; margin-left: 2px; }
-.wa-voice-waveform { flex: 1; display: flex; align-items: center; gap: 2px; height: 24px; }
-.wa-voice-bar { width: 3px; background: #8696a0; border-radius: 2px; }
-.wa-voice-duration { font-size: 11px; color: #667781; font-weight: 600; white-space: nowrap; }
-
-/* PANNEAU D'ENREGISTREMENT VOCAL DANS LA BARRE DE SAISIE (STYLE WHATSAPP) */
-.voice-recording-panel {
-  display: none;
-  flex: 1;
-  align-items: center;
-  justify-content: space-between;
-  background: #ffffff;
-  border-radius: 24px;
-  padding: 4px 12px 4px 16px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-}
-.voice-recording-panel.open { display: flex; }
-.voice-rec-left { display: flex; align-items: center; gap: 10px; color: #ea0000; font-weight: 700; font-size: 13.5px; }
-.voice-red-dot { width: 10px; height: 10px; background: #ea0000; border-radius: 50%; animation: pulseRed 1s infinite; }
-@keyframes pulseRed { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.2); } 100% { opacity: 1; transform: scale(1); } }
-.voice-rec-actions { display: flex; align-items: center; gap: 12px; }
-.voice-cancel-btn { background: transparent; border: 0; color: #ea0000; font-weight: 700; font-size: 13px; cursor: pointer; }
-
-/* MENU DU TROMBONE STYLE WHATSAPP */
-.wa-attach-popup {
-  position: absolute;
-  bottom: 70px;
-  left: 16px;
-  background: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  display: none;
-  flex-direction: column;
-  padding: 8px 0;
-  z-index: 200;
-  min-width: 180px;
-  animation: popUpAnim 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-.wa-attach-popup.open { display: flex; }
-.wa-attach-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 10px 18px;
-  font-size: 13.5px;
-  font-weight: 600;
-  color: #3b4a54;
-  background: transparent;
-  border: 0;
-  text-align: left;
-  cursor: pointer;
-  transition: background .2s;
-}
-.wa-attach-item:hover { background: #f0f2f5; color: var(--blue); }
-.wa-attach-item svg { width: 20px; height: 20px; fill: var(--blue); flex: none; }
-
-/* BARRE DE SAISIE WHATSAPP */
-.message-composer{display:flex;align-items:center;gap:8px;padding:10px 16px;background:#f0f2f5;position:relative}
-.composer-action-btn{background:transparent;border:0;color:#54656f;cursor:pointer;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;transition:background .2s;flex:none}
-.composer-action-btn:hover{background:rgba(0,0,0,0.06);color:#111b21}
-.composer-action-btn svg{width:22px;height:22px;fill:currentColor}
-.composer-input{flex:1;background:#ffffff;border:0;border-radius:24px;padding:10px 16px;font-size:14px;outline:none;color:#111b21;max-height:100px;box-shadow:0 1px 2px rgba(0,0,0,0.05)}
-.send-message{background:#00a884;color:white;border:0;border-radius:50%;width:42px;height:42px;display:grid;place-items:center;cursor:pointer;flex:none;transition:background .2s, transform .2s}
-.send-message:hover{background:#008f72;transform:scale(1.05)}
-.send-message svg{width:20px;height:20px;fill:currentColor;margin-left:2px}
+.chat-launcher:hover{transform:scale(1.03);box-shadow:0 14px 35px rgba(37, 211, 102, 0.5)}
 
 /* GRILLES DE MÉDIAS & YOUTUBE */
 .meta-media-grid{display:grid;gap:3px;border-radius:12px;overflow:hidden;background:#e9eef9;width:100%;position:relative}
@@ -637,7 +643,7 @@ a{color:inherit;text-decoration:none}
 .hero-slide{position:absolute;inset:0;background-image:var(--slide-image);background-size:cover;background-position:center;opacity:0;transition:opacity 1s ease}
 .hero-slide.active{opacity:1}
 .hero-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,22,59,.92) 0%,rgba(4,35,83,.82) 50%,rgba(4,35,83,.35) 100%);z-index:1}
-.hero-slide-copy{position:absolute;right:38px;top:28px;z-index:4;display:flex;flex-direction:column;gap:5px;width:min(38%,330px);color:#fff;text-align:right}
+.hero-slide-copy{position:absolute;right:38px;top:28px;z-index:4;display:none;flex-direction:column;gap:5px;width:min(38%,330px);color:#fff;text-align:right}
 .hero-controls{position:absolute;right:28px;bottom:18px;z-index:4;display:flex;align-items:center;gap:12px;pointer-events:auto}
 .hero-arrow{width:32px;height:32px;border-radius:50%;border:1px solid #ffffff99;background:#08285f88;color:#fff;font-size:24px;cursor:pointer;display:grid;place-items:center}
 .hero-dots{display:flex;align-items:center;gap:7px}
@@ -660,6 +666,7 @@ a{color:inherit;text-decoration:none}
   <div class="left-nav-group">
     <button class="hamburger-btn" id="hamburgerBtn" aria-label="Ouvrir le menu">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      <div class="hamburger-progress" id="hamburgerProgress"></div>
     </button>
     <a class="brand" href="#" onclick="switchView('home'); return false;">
       <svg class="brand-mark" viewBox="0 0 64 64" role="img">
@@ -679,7 +686,9 @@ a{color:inherit;text-decoration:none}
     <a class="active" href="#" onclick="switchView('home'); return false;"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg>Accueil</a>
     <a href="#" onclick="switchView('home'); document.querySelector('#campagnes')?.scrollIntoView({behavior:'smooth'}); return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14V5a2 2 0 0 1 2-2h12v13H6a2 2 0 0 0-2 2v-4Zm14-8 4-3v14l-4-3"/></svg>Campagnes</a>
   </nav>
-  <div class="top-actions"></div>
+  <div class="top-actions">
+    <button class="cta-apply-btn" onclick="switchView('candidature')">💡 Soumettre un projet</button>
+  </div>
 </header>
 
 <div class="mobile-drawer-overlay" id="drawerOverlay"></div>
@@ -693,30 +702,84 @@ a{color:inherit;text-decoration:none}
   <div class="drawer-body">
     <a href="#" class="drawer-item drawer-link" onclick="switchView('home');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg>Accueil</a>
     <a href="#" class="drawer-item drawer-link" onclick="switchView('home');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14V5a2 2 0 0 1 2-2h12v13H6a2 2 0 0 0-2 2v-4Zm14-8 4-3v14l-4-3"/></svg>Campagnes et projets</a>
+    <a href="#" class="drawer-item drawer-link" onclick="switchView('candidature');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Soumettre un dossier de projet</a>
     <div class="drawer-divider"></div>
     <a href="#" class="drawer-item drawer-link" onclick="switchView('criteres');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Critères d'attribution de l'aide</a>
     <a href="#" class="drawer-item drawer-link" onclick="switchView('confidentialite');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Règles de confidentialité</a>
     <div class="drawer-divider"></div>
     <a href="#contact" class="drawer-item drawer-link" onclick="switchView('home');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Contact & Support</a>
+
+    <!-- PANNEAU ADMINISTRATEUR INTÉGRÉ -->
+    <div class="admin-nav-panel" id="adminNavPanel">
+      <div class="admin-panel-title">
+        <span>Navigation Admin (Sécurisé)</span>
+        <button type="button" onclick="adminLogout()" style="background:none; border:0; color:#dc2626; font-size:11px; cursor:pointer; font-weight:700;">Verrouiller 🔒</button>
+      </div>
+      <button type="button" class="admin-btn admin-btn-blue" onclick="openAdminForm('menu_textes')">Menu Burger & Textes <span>⚙️</span></button>
+      <button type="button" class="admin-btn admin-btn-purple" onclick="openAdminForm('bienvenue')">Message de Bienvenue (Georgia) <span>✏️</span></button>
+      <button type="button" class="admin-btn admin-btn-green" onclick="openAdminForm('stats_impact')">Statistiques & Transparence <span>📊</span></button>
+      <button type="button" class="admin-btn admin-btn-orange" onclick="openAdminForm('dossiers_recus')">Dossiers Reçus (<span id="adminDossierCountBadge">0</span>) 📁</button>
+      <button type="button" class="admin-btn admin-btn-pink" onclick="openAdminForm('gerer_admins')">👥 Gérer les 4 Administrateurs <span>⚙️</span></button>
+      <button type="button" class="admin-btn admin-btn-blue" onclick="openAdminForm('entete')">En-tête & Identité <span>🛡️</span></button>
+      <button type="button" class="admin-btn admin-btn-green" onclick="openAdminForm('banniere')">Bannière / Slider (3 phrases) <span>🖼️</span></button>
+      <button type="button" class="admin-btn admin-btn-pink" onclick="openAdminForm('pied_page')">Pied de page <span>📌</span></button>
+      <button type="button" class="admin-btn admin-btn-blue" onclick="switchView('home')">Voir Publications <span>👁️</span></button>
+      <button type="button" class="admin-btn admin-btn-purple" onclick="openAdminForm('faire_publication')">+ Faire une Publication <span>➕</span></button>
+      <button type="button" class="admin-btn admin-btn-teal" onclick="openWhatsAppChat()">Discussions WhatsApp <span>💬</span></button>
+    </div>
   </div>
 </aside>
+
+<!-- MODALE DE CONNEXION SÉCURISÉE ADMIN -->
+<div class="admin-form-overlay" id="adminLoginOverlay">
+  <div class="admin-form-card" style="max-width:380px;">
+    <div class="admin-form-title">
+      <span>🔐 Connexion Administrateur</span>
+      <button type="button" onclick="closeAdminLogin()" style="background:none; border:0; font-size:18px; cursor:pointer; color:#64748b;">✕</button>
+    </div>
+    <p style="font-size:13px; color:#53617f; margin-bottom:15px;">Veuillez saisir votre mot de passe administrateur sécurisé :</p>
+    <form onsubmit="submitAdminLogin(event)">
+      <div class="admin-form-group">
+        <label>Mot de passe :</label>
+        <input type="password" class="admin-form-input" id="adm_loginPassword" placeholder="Mot de passe admin" required autofocus>
+      </div>
+      <div class="admin-form-actions">
+        <button type="button" class="custom-modal-btn cancel" onclick="closeAdminLogin()">Annuler</button>
+        <button type="submit" class="custom-modal-btn confirm" style="background:var(--blue);">Se connecter</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- MODALE DE FORMULAIRE ADMINISTRATEUR SUR MESURE -->
+<div class="admin-form-overlay" id="adminFormOverlay">
+  <div class="admin-form-card">
+    <div class="admin-form-title">
+      <span id="adminFormTitle">Modifier l'élément</span>
+      <button type="button" onclick="closeAdminForm()" style="background:none; border:0; font-size:18px; cursor:pointer; color:#64748b;">✕</button>
+    </div>
+    <form id="adminFormContent" onsubmit="submitAdminForm(event)">
+    </form>
+  </div>
+</div>
 
 <!-- VUE 1 : ACCUEIL -->
 <div id="viewHome" class="site-view active-view">
   <main class="page" id="accueil">
     
-    <!-- TITRE DE BIENVENUE ET CONFIANCE PROFESSIONNEL (POLICE GEORGIA) -->
+    <!-- TITRE DE BIENVENUE -->
     <div class="dynamic-welcome-header">
-      <h2 class="dynamic-welcome-title">Espace Officiel de <span>The Rock Solidarity Foundation</span></h2>
-      <p class="dynamic-welcome-subtitle">Plateforme solidaire d'accompagnement et de suivi des projets</p>
+      <h2 class="dynamic-welcome-title" id="welcomeTitleContainer">Espace Officiel de <span>The Rock Solidarity Foundation</span></h2>
+      <p class="dynamic-welcome-subtitle" id="welcomeSubtitleContainer">Plateforme solidaire d'accompagnement et de suivi des projets</p>
     </div>
 
+    <!-- BANNIÈRE / SLIDER PUBLICITAIRE (3 PHRASES PERSONNALISABLES) -->
     <section class="hero">
       <div class="hero-copy">
         <div class="hero-kicker"><span>✦</span> LA SOLIDARITÉ QUI FAIT AVANCER</div>
-        <h1>Soutenons ensemble les projets qui bâtissent <em>un avenir meilleur</em></h1>
-        <p>Nous accompagnons les entrepreneurs et les porteurs de projets qui ont besoin d'un nouvel élan.</p>
-        <button style="width:auto;padding:12px 24px;border:0;background:linear-gradient(90deg,#12a63d,#0d982f);color:white;border-radius:11px;font-weight:850;" onclick="document.querySelector('#campagnes').scrollIntoView({behavior:'smooth'})">Découvrir les projets soutenus →</button>
+        <h1 id="heroSlideTitle">Soutenons ensemble les projets qui bâtissent <em>un avenir meilleur</em></h1>
+        <p id="heroSlideDesc">Nous accompagnons les entrepreneurs et les porteurs de projets qui ont besoin d'un nouvel élan.</p>
+        <button style="width:auto;padding:12px 24px;border:0;background:linear-gradient(90deg,#12a63d,#0d982f);color:white;border-radius:11px;font-weight:850;" onclick="document.querySelector('#campagnes')?.scrollIntoView({behavior:'smooth'})">Découvrir les projets soutenus →</button>
       </div>
       <div class="hero-slider" id="heroSlider">
         <div class="hero-slide active" style="--slide-image:url('image1.jpg')"></div>
@@ -725,8 +788,7 @@ a{color:inherit;text-decoration:none}
         <div class="hero-shade"></div>
         <div class="hero-slide-copy">
           <span style="font-size:10px;font-weight:850;letter-spacing:1.4px;color:#ffe18a">À LA UNE</span>
-          <strong>Des projets qui méritent une chance</strong>
-          <span style="font-size:12px;color:#e5efff">Un accompagnement concret pour transformer les idées.</span>
+          <strong id="heroSlideBadgeText">Des projets qui méritent une chance</strong>
         </div>
         <div class="hero-controls">
           <button type="button" class="hero-arrow" id="heroPrev">‹</button>
@@ -740,6 +802,22 @@ a{color:inherit;text-decoration:none}
       </div>
     </section>
 
+    <!-- STATISTIQUES D'IMPACT (CLIQUABLES POUR NOUVELLE PAGE DÉDIÉE) -->
+    <div class="impact-stats-bar" id="impactStatsBarContainer">
+      <div class="impact-stat-card" onclick="openStatsPage(1)">
+        <div class="impact-stat-number" id="statVal1">14</div>
+        <div class="impact-stat-label">Projets soutenus</div>
+      </div>
+      <div class="impact-stat-card" onclick="openStatsPage(2)">
+        <div class="impact-stat-number" id="statVal2">4 200 $</div>
+        <div class="impact-stat-label">Fonds décaissés</div>
+      </div>
+      <div class="impact-stat-card" onclick="openStatsPage(3)">
+        <div class="impact-stat-number" id="statVal3">100%</div>
+        <div class="impact-stat-label">Transparence & Suivi</div>
+      </div>
+    </div>
+
     <div class="content-grid">
       <section class="feed" id="campagnes">
         <div id="dynamicFeedContainer"></div>
@@ -748,7 +826,10 @@ a{color:inherit;text-decoration:none}
       <aside class="sidebar">
         <section class="side-card">
           <div class="side-banner"><div class="trophy">🏆</div><h3>Ensemble,<br>plus loin !</h3></div>
-          <div class="side-body"><p>Chaque don compte pour soutenir les projets qui créent de la valeur.</p></div>
+          <div class="side-body">
+            <p>Chaque don compte pour soutenir les projets qui créent de la valeur.</p>
+            <button class="cta-apply-btn" style="width:100%; margin-top:12px; text-align:center;" onclick="switchView('candidature')">💡 Soumettre mon projet</button>
+          </div>
         </section>
         <section class="side-card" id="apropos">
           <div class="values-head"><span style="font-size:25px">💎</span> <span>Nos valeurs</span></div>
@@ -762,6 +843,68 @@ a{color:inherit;text-decoration:none}
       </aside>
     </div>
   </main>
+</div>
+
+<!-- VUE UNIQUE DÉDIÉE AUX STATISTIQUES & GRAPHIQUES -->
+<div id="viewStatsPage" class="site-view">
+  <div class="standalone-page" style="max-width:850px;">
+    <div class="page-back-bar">
+      <button class="back-btn" onclick="switchView('home')">← Retour à l'accueil</button>
+      <span style="font-size:12px;color:var(--muted);font-weight:700">The Rock Solidarity Foundation</span>
+    </div>
+    <h1 id="statsPageHeaderTitle"><span>📊</span> Analyse & Évolution</h1>
+    <p id="statsPageHeaderSub" style="color:#53617f; margin-bottom:20px;">Rapport officiel des performances et de l'impact solidaire.</p>
+    
+    <div id="statsPageContentArea"></div>
+  </div>
+</div>
+
+<!-- VUE : FORMULAIRE DE CANDIDATURE -->
+<div id="viewCandidature" class="site-view">
+  <div class="standalone-page" style="max-width:700px;">
+    <div class="page-back-bar">
+      <button class="back-btn" onclick="switchView('home')">← Retour à l'accueil</button>
+      <span style="font-size:12px;color:var(--muted);font-weight:700">The Rock Solidarity Foundation</span>
+    </div>
+    <h1><span>💡</span> Soumettre un dossier de projet</h1>
+    <p>Remplissez le formulaire ci-dessous pour présenter votre initiative ou votre demande d'accompagnement. Notre comité l'étudiera avec la plus grande attention.</p>
+    
+    <form id="projectSubmitForm" onsubmit="submitCandidatureProject(event)" style="margin-top:24px; display:flex; flex-direction:column; gap:16px;">
+      <div class="admin-form-group">
+        <label>Nom complet du porteur / Représentant :</label>
+        <input type="text" class="admin-form-input" id="cand_name" placeholder="Ex: Jean Dupont" required>
+      </div>
+      <div class="admin-form-group">
+        <label>Intitulé du projet :</label>
+        <input type="text" class="admin-form-input" id="cand_projectTitle" placeholder="Ex: Expansion de notre atelier solidaire" required>
+      </div>
+      <div class="admin-form-group">
+        <label>Catégorie du projet :</label>
+        <select class="admin-form-select" id="cand_category">
+          <option value="Entrepreneuriat local">Entrepreneuriat local</option>
+          <option value="Initiative communautaire">Initiative communautaire</option>
+          <option value="Éducation & Formation">Éducation & Formation</option>
+          <option value="Autre projet solidaire">Autre projet solidaire</option>
+        </select>
+      </div>
+      <div class="admin-form-group">
+        <label>Description détaillée et objectifs :</label>
+        <textarea class="admin-form-textarea" id="cand_description" placeholder="Expliquez en quelques lignes votre besoin et l'impact attendu..." required></textarea>
+      </div>
+      <div class="admin-form-group">
+        <label>Budget estimé / Montant sollicité ($) :</label>
+        <input type="text" class="admin-form-input" id="cand_budget" placeholder="Ex: 500 $" required>
+      </div>
+      <div class="admin-form-group">
+        <label>Numéro de contact / WhatsApp :</label>
+        <input type="text" class="admin-form-input" id="cand_phone" placeholder="Entrez votre numéro personnel" required>
+      </div>
+      <div class="admin-form-actions">
+        <button type="button" class="custom-modal-btn cancel" onclick="switchView('home')">Annuler</button>
+        <button type="submit" class="custom-modal-btn confirm" style="background:var(--blue);">Envoyer mon dossier</button>
+      </div>
+    </form>
+  </div>
 </div>
 
 <!-- VUE 2 : CRITÈRES -->
@@ -799,76 +942,11 @@ a{color:inherit;text-decoration:none}
   </div>
 </div>
 
-<!-- BOUTON DE CHAT FLOTTANT -->
-<button class="chat-launcher" id="chatLauncher" aria-label="Ouvrir la discussion">
-  <svg viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-9 8.5 9 9 0 0 1-4-.9L3 21l1.9-4.5A8 8 0 1 1 21 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01" stroke-width="3" stroke-linecap="round"/></svg>
-  <span class="chat-label-text" id="chatLabelText">Besoin d'aide ? Écrivez-nous</span>
+<!-- BOUTON DE CHAT WHATSAPP -->
+<button class="chat-launcher" id="chatLauncher" onclick="openWhatsAppChat()" aria-label="Ouvrir WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+  <span class="chat-label-text" id="chatLabelText">Écrivez-nous sur WhatsApp</span>
 </button>
-
-<!-- INTERFACE DE DISCUSSION WHATSAPP COMPLÈTE -->
-<section class="messenger-screen" id="messengerScreen">
-  <header class="messenger-topbar" id="messengerTopbar">
-    <button id="closeMessenger" class="messenger-close" aria-label="Retour"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button>
-    <div class="messenger-brand" id="messengerBrand">
-      <img id="waAvatarHead" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&h=120&fit=crop&crop=faces" alt="Avatar">
-      <div>
-        <strong style="font-size:15px; display:block;"><span id="waContactName">Fondation (Support)</span></strong>
-        <small id="waPresence">en ligne</small>
-      </div>
-    </div>
-  </header>
-  <div class="message-thread">
-    <div class="thread-messages" id="threadMessages">
-      <div class="wa-message incoming">
-        <div class="wa-text">Bonjour ! Bienvenue sur The Rock Solidarity Foundation. Comment pouvons-nous vous aider aujourd'hui ?</div>
-        <div class="wa-meta"><span class="live-clock-time" data-time="2026-11-10T09:00:00Z"></span></div>
-      </div>
-    </div>
-
-    <!-- MENU DU TROMBONE WHATSAPP -->
-    <div class="wa-attach-popup" id="waAttachPopup">
-      <input type="file" id="waGalleryInput" accept="image/*,video/*" style="display:none">
-      <input type="file" id="waCameraInput" accept="image/*" capture="environment" style="display:none">
-      <input type="file" id="waDocInput" accept=".pdf,.doc,.docx,.xls,.xlsx,.txt" style="display:none">
-      
-      <button type="button" class="wa-attach-item" id="attachGalleryBtn">
-        <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
-        Galerie
-      </button>
-      <button type="button" class="wa-attach-item" id="attachCameraBtn">
-        <svg viewBox="0 0 24 24"><path d="M12 9c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zM20 4h-3.17L15 2H9L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 13c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
-        Appareil photo
-      </button>
-      <button type="button" class="wa-attach-item" id="attachDocBtn">
-        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-        Documents
-      </button>
-    </div>
-
-    <!-- BARRE DE SAISIE WHATSAPP (AVEC MODE VOCAL INTÉGRÉ) -->
-    <form class="message-composer" id="messageForm">
-      <button type="button" class="composer-action-btn" id="waAttachBtn" title="Joindre un fichier"><svg viewBox="0 0 24 24"><path d="M21.3 11.2l-8.9 8.9c-2.4 2.4-6.3 2.4-8.7 0s-2.4-6.3 0-8.7l9.7-9.7c1.5-1.5 3.9-1.5 5.4 0s1.5 3.9 0 5.4l-8.7 8.7c-.8.8-2 .8-2.8 0s-.8-2 0-2.8l7.5-7.5-1.4-1.4-7.5 7.5c-1.6 1.6-1.6 4.2 0 5.8s4.2 1.6 5.8 0l8.7-8.7c2.3-2.3 2.3-6.1 0-8.4s-6.1-2.3-8.4 0l-9.7 9.7c-3.1 3.1-3.1 8.2 0 11.3s8.2 3.1 11.3 0l8.9-8.9-1.4-1.4z"/></svg></button>
-      
-      <!-- Zone de texte normale -->
-      <textarea class="composer-input" id="messageInput" rows="1" placeholder="Écrire un message..."></textarea>
-      
-      <!-- Panneau d'enregistrement vocal intégré à la place du texte -->
-      <div class="voice-recording-panel" id="voiceRecordingPanel">
-        <div class="voice-rec-left">
-          <div class="voice-red-dot"></div>
-          <span id="voiceTimer">0:00</span>
-          <span style="font-size:12.5px; color:#54656f; font-weight:500;">Enregistrement...</span>
-        </div>
-        <div class="voice-rec-actions">
-          <button type="button" class="voice-cancel-btn" id="voiceCancelBtn">Annuler</button>
-        </div>
-      </div>
-
-      <button type="button" class="composer-action-btn" id="waMicBtn" title="Enregistrer un message vocal"><svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button>
-      <button type="submit" class="send-message" id="waSendBtn" title="Envoyer"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
-    </form>
-  </div>
-</section>
 
 <!-- VISIONNEUSE PLEIN ÉCRAN -->
 <div class="fb-lightbox" id="fbLightbox">
@@ -883,7 +961,7 @@ a{color:inherit;text-decoration:none}
   </div>
 </div>
 
-<!-- MODALE DE CONFIRMATION (SANS FOND NOIR NI FLOU) -->
+<!-- MODALE DE CONFIRMATION -->
 <div class="custom-modal-overlay" id="customModalOverlay">
   <div class="custom-modal-card">
     <div class="custom-modal-icon-wrap" id="modalIconWrap">
@@ -905,9 +983,9 @@ a{color:inherit;text-decoration:none}
   <div class="footer-main">
     <div class="footer-about">
       <a class="footer-brand" href="#" onclick="switchView('home'); return false;"><span class="footer-mark">✦</span><span>Solidarité <b>Plus</b></span></a>
-      <p>Une initiative privée qui accompagne les entrepreneurs, les entreprises et les porteurs de projets dans leurs ambitions de développement.</p>
+      <p id="footerDescText">Une initiative privée qui accompagne les entrepreneurs, les entreprises et les porteurs de projets dans leurs ambitions de développement.</p>
     </div>
-    <div class="footer-column"><h3>Navigation</h3><a href="#" onclick="switchView('home'); return false;">Accueil</a><a href="#" onclick="switchView('home'); document.querySelector('#campagnes')?.scrollIntoView({behavior:'smooth'}); return false;">Projets soutenus</a></div>
+    <div class="footer-column"><h3>Navigation</h3><a href="#" onclick="switchView('home'); return false;">Accueil</a><a href="#" onclick="switchView('home'); document.querySelector('#campagnes')?.scrollIntoView({behavior:'smooth'}); return false;">Projets soutenus</a><a href="#" onclick="switchView('candidature'); return false;">Soumettre un projet</a></div>
     <div class="footer-column"><h3>Informations</h3><a href="#" onclick="switchView('confidentialite'); return false;">Règles de confidentialité</a></div>
     <div class="footer-column footer-contact">
       <h3>Nous contacter</h3>
@@ -919,10 +997,6 @@ a{color:inherit;text-decoration:none}
 </footer>
 
 <script>
-// --- CONFIGURATION AIRTABLE POUR LE SITE PUBLIC ---
-const AIRTABLE_PAT = 'patuYh42j8HjE0kEY.eedc6cd7802c80bc3f6b18dae89bd4d6b169a3cd4881212360b5f3d6c850f67c';
-const AIRTABLE_BASE_ID = 'appmCEzAt9U4ZR4w2';
-
 const $ = (s, root=document) => root.querySelector(s);
 const $$ = (s, root=document) => [...root.querySelectorAll(s)];
 
@@ -930,8 +1004,56 @@ function escapeHtml(value) {
   return String(value ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
+/* CONFIGURATION JSONBIN.IO */
+const JSONBIN_CONFIG = {
+  binId: '6af6045eac6210605a832bc9',
+  masterKey: '$2a$10$BQmkL2ip3.4qza82fbmPu.nDQtJf52il4qj0jSdD5Hr0kvLe7Yxqu'
+};
+
+let jsonBinCache = null;
+let isJsonBinLoaded = false;
+
+async function fetchJsonBinData() {
+  if (isJsonBinLoaded && jsonBinCache) return jsonBinCache;
+  try {
+    const res = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_CONFIG.binId}/latest`, {
+      headers: { 'X-Master-Key': JSONBIN_CONFIG.masterKey }
+    });
+    if(res.ok) {
+      const data = await res.json();
+      jsonBinCache = data.record || {};
+      isJsonBinLoaded = true;
+      return jsonBinCache;
+    }
+  } catch(e) {}
+  return jsonBinCache || {};
+}
+
+async function saveJsonBinData(newData) {
+  jsonBinCache = newData;
+  try {
+    await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_CONFIG.binId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Master-Key': JSONBIN_CONFIG.masterKey
+      },
+      body: JSON.stringify(newData)
+    });
+  } catch(e) {}
+}
+
 function readJSON(key, fallback) {
-  try { const raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : fallback; } catch (e) { return fallback; }
+  if(jsonBinCache && jsonBinCache[key] !== undefined) {
+    return jsonBinCache[key];
+  }
+  return fallback;
+}
+
+async function writeJSON(key, value) {
+  if(!jsonBinCache) jsonBinCache = await fetchJsonBinData();
+  jsonBinCache[key] = value;
+  await saveJsonBinData(jsonBinCache);
 }
 
 let modalResolveCallback = null;
@@ -958,6 +1080,572 @@ $('#modalConfirmBtn')?.addEventListener('click', () => {
   if (modalResolveCallback) modalResolveCallback(true);
 });
 
+/* GESTION DES 4 ADMINISTRATEURS */
+const DEFAULT_ADMINS = [
+  { id: 'admin1', name: 'Le fondateur', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=160&h=160&fit=crop&crop=faces' },
+  { id: 'admin2', name: 'Marie Claire', avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=160&h=160&fit=crop&crop=faces' },
+  { id: 'admin3', name: 'Marc Dupont', avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=160&h=160&fit=crop&crop=faces' },
+  { id: 'admin4', name: 'Sarah Koffi', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=160&h=160&fit=crop&crop=faces' }
+];
+
+function getAdminsList() {
+  return readJSON('rock_admins_list', DEFAULT_ADMINS);
+}
+
+function openWhatsAppChat() {
+  const phone = (readJSON('rock_admin_phone', '+229 01 02 03 04')).replace(/[^0-9]/g, '');
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent("Bonjour, je vous contacte depuis le site The Rock Solidarity Foundation.")}`;
+  window.open(url, '_blank');
+}
+
+/* SYSTÈME DE SÉCURITÉ ADMIN : VERROUILLAGE AUTOMATIQUE OBLIGATOIRE À CHAQUE CHARGEMENT */
+let isAdminUnlocked = false;
+try {
+  isAdminUnlocked = false;
+} catch(e) {
+  isAdminUnlocked = false;
+}
+
+function updateAdminUIVisibility() {
+  const panel = $('#adminNavPanel');
+  if(panel) {
+    if(isAdminUnlocked) {
+      panel.classList.add('open');
+      updateAdminDossierBadge();
+    } else {
+      panel.classList.remove('open');
+    }
+  }
+}
+
+function updateAdminDossierBadge() {
+  const list = readJSON('rock_candidate_dossiers', []);
+  const badge = $('#adminDossierCountBadge');
+  if(badge) badge.textContent = list.length;
+}
+
+function adminLogout() {
+  isAdminUnlocked = false;
+  updateAdminUIVisibility();
+  renderPublicPosts();
+  showToast('🔒 Panneau administrateur verrouillé et masqué.');
+}
+
+function closeAdminLogin() {
+  $('#adminLoginOverlay')?.classList.remove('open');
+}
+
+function submitAdminLogin(event) {
+  event.preventDefault();
+  const pwdInput = $('#adm_loginPassword').value;
+  const correctPwd = readJSON('rock_admin_pwd', 'ROCK 7275 @');
+
+  if(pwdInput === correctPwd) {
+    isAdminUnlocked = true;
+    updateAdminUIVisibility();
+    renderPublicPosts();
+    closeAdminLogin();
+    showToast('🔓 Panneau admin démasqué avec succès !');
+    openDrawer();
+  } else {
+    showToast('❌ Mot de passe incorrect');
+  }
+  $('#adm_loginPassword').value = '';
+}
+
+/* GESTION DE L'APPUI LONG (10 SECONDES) */
+let hamburgerTimer = null;
+let hamburgerProgressInterval = null;
+let pressStartTime = 0;
+const HOLD_DURATION = 10000;
+
+const hamburgerBtn = $('#hamburgerBtn');
+const hamburgerProgress = $('#hamburgerProgress');
+
+function startHamburgerHold(e) {
+  pressStartTime = Date.now();
+  let elapsed = 0;
+  if(hamburgerProgress) hamburgerProgress.style.width = '0%';
+
+  hamburgerProgressInterval = setInterval(() => {
+    elapsed = Date.now() - pressStartTime;
+    let pct = Math.min(100, (elapsed / HOLD_DURATION) * 100);
+    if(hamburgerProgress) hamburgerProgress.style.width = pct + '%';
+  }, 100);
+
+  hamburgerTimer = setTimeout(() => {
+    clearInterval(hamburgerProgressInterval);
+    if(hamburgerProgress) hamburgerProgress.style.width = '0%';
+    
+    if(isAdminUnlocked) {
+      adminLogout();
+      closeDrawer();
+    } else {
+      $('#adminLoginOverlay')?.classList.add('open');
+      closeDrawer();
+    }
+  }, HOLD_DURATION);
+}
+
+function cancelHamburgerHold() {
+  if(hamburgerTimer) clearTimeout(hamburgerTimer);
+  if(hamburgerProgressInterval) clearInterval(hamburgerProgressInterval);
+  if(hamburgerProgress) hamburgerProgress.style.width = '0%';
+}
+
+hamburgerBtn?.addEventListener('mousedown', startHamburgerHold);
+hamburgerBtn?.addEventListener('mouseup', cancelHamburgerHold);
+hamburgerBtn?.addEventListener('mouseleave', cancelHamburgerHold);
+hamburgerBtn?.addEventListener('touchstart', startHamburgerHold, {passive: true});
+hamburgerBtn?.addEventListener('touchend', cancelHamburgerHold);
+
+/* AFFICHAGE DE LA PAGE UNIQUE DE STATISTIQUES */
+function openStatsPage(blockId) {
+  const titleEl = $('#statsPageHeaderTitle');
+  const subEl = $('#statsPageHeaderSub');
+  const contentArea = $('#statsPageContentArea');
+  if(!titleEl || !contentArea) return;
+
+  if(blockId === 1) {
+    titleEl.innerHTML = "<span>📊</span> Évolution des Projets Soutenus";
+    subEl.textContent = "Analyse détaillée par secteur d'activité et taux de réussite des initiatives accompagnées.";
+    contentArea.innerHTML = `
+      <p style="font-size:14px; color:#4a5568; line-height:1.6; margin-bottom:16px;">Ce rapport présente la répartition sectorielle et l'efficacité opérationnelle des projets sélectionnés par notre comité d'experts.</p>
+      <div class="stats-chart-container">
+        <div class="chart-bar-row"><span class="chart-bar-label">Entrepreneuriat</span><div class="chart-bar-track"><div class="chart-bar-fill" style="width:75%">6 projets</div></div></div>
+        <div class="chart-bar-row"><span class="chart-bar-label">Communautaire</span><div class="chart-bar-track"><div class="chart-bar-fill" style="width:50%">4 projets</div></div></div>
+        <div class="chart-bar-row"><span class="chart-bar-label">Éducation</span><div class="chart-bar-track"><div class="chart-bar-fill" style="width:40%">3 projets</div></div></div>
+        <div class="chart-bar-row"><span class="chart-bar-label">Autres</span><div class="chart-bar-track"><div class="chart-bar-fill" style="width:25%">1 projet</div></div></div>
+      </div>
+      <div style="background:#f8fafc; padding:16px; border-radius:12px; font-size:13px; color:#1e293b; margin-top:20px; border-left:4px solid var(--blue);">
+        <b>Indicateur clé :</b> 94% des porteurs de projets soutenus ont atteint leurs objectifs de développement à 6 mois.
+      </div>
+    `;
+  } else if(blockId === 2) {
+    titleEl.innerHTML = "<span>📈</span> Évolution Financière & Fonds Décaissés";
+    subEl.textContent = "Suivi trimestriel des décaissements et des investissements solidaires réalisés sur le terrain.";
+    contentArea.innerHTML = `
+      <p style="font-size:14px; color:#4a5568; line-height:1.6; margin-bottom:16px;">Transparence totale sur l'allocation des ressources financières aux entrepreneurs et structures partenaires.</p>
+      <div class="stats-chart-container">
+        <div class="chart-bar-row"><span class="chart-bar-label">Trimestre 1</span><div class="chart-bar-track"><div class="chart-bar-fill" style="width:40%">900 $</div></div></div>
+        <div class="chart-bar-row"><span class="chart-bar-label">Trimestre 2</span><div class="chart-bar-track"><div class="chart-bar-fill" style="width:65%">1 250 $</div></div></div>
+        <div class="chart-bar-row"><span class="chart-bar-label">Trimestre 3</span><div class="chart-bar-track"><div class="chart-bar-fill" style="width:85%">2 050 $</div></div></div>
+      </div>
+      <div style="background:#f8fafc; padding:16px; border-radius:12px; font-size:13px; color:#1e293b; margin-top:20px; border-left:4px solid var(--green);">
+        <b>Total cumulé :</b> 4 200 $ injectés directement dans l'économie réelle et solidaire.
+      </div>
+    `;
+  } else if(blockId === 3) {
+    titleEl.innerHTML = "<span>🔍</span> Transparence & Gouvernance";
+    subEl.textContent = "Indicateurs de conformité, traçabilité des dossiers et audits de terrain réguliers.";
+    contentArea.innerHTML = `
+      <p style="font-size:14px; color:#4a5568; line-height:1.6; margin-bottom:16px;">Chaque action menée par notre fondation est soumise à des critères stricts de vérification et de contrôle éthique.</p>
+      <div class="stats-chart-container">
+        <div class="chart-bar-row"><span class="chart-bar-label">Traçabilité</span><div class="chart-bar-track"><div class="chart-bar-fill" style="width:100%">100%</div></div></div>
+        <div class="chart-bar-row"><span class="chart-bar-label">Audits réalisés</span><div class="chart-bar-track"><div class="chart-bar-fill" style="width:95%">95%</div></div></div>
+        <div class="chart-bar-row"><span class="chart-bar-label">Satisfaction</span><div class="chart-bar-track"><div class="chart-bar-fill" style="width:98%">98%</div></div></div>
+      </div>
+      <div style="background:#f8fafc; padding:16px; border-radius:12px; font-size:13px; color:#1e293b; margin-top:20px; border-left:4px solid var(--gold);">
+        <b>Garantie éthique :</b> Publication mensuelle des reçus et des rapports d'impact validés par les administrateurs.
+      </div>
+    `;
+  }
+
+  switchView('statsPage');
+}
+
+/* FORMULAIRES ADMIN SUR MESURE */
+let currentAdminActionType = null;
+
+function openAdminForm(actionType) {
+  currentAdminActionType = actionType;
+  const overlay = $('#adminFormOverlay');
+  const titleEl = $('#adminFormTitle');
+  const contentEl = $('#adminFormContent');
+  if(!overlay || !contentEl) return;
+
+  closeDrawer();
+  let html = '';
+
+  if(actionType === 'menu_textes') {
+    titleEl.textContent = "Configuration : Menu Burger & Textes";
+    let curChatLabel = readJSON('rock_chat_label', "Écrivez-nous sur WhatsApp");
+    let curPwd = readJSON('rock_admin_pwd', 'ROCK 7275 @');
+    html = `
+      <div class="admin-form-group">
+        <label>Texte du bouton WhatsApp flottant :</label>
+        <input type="text" class="admin-form-input" id="adm_chatLabel" value="${escapeHtml(curChatLabel)}" required>
+      </div>
+      <div class="admin-form-group">
+        <label>Changer le mot de passe admin :</label>
+        <input type="text" class="admin-form-input" id="adm_newPwd" value="${escapeHtml(curPwd)}" required>
+      </div>
+      <div class="admin-form-actions">
+        <button type="button" class="custom-modal-btn cancel" onclick="closeAdminForm()">Annuler</button>
+        <button type="submit" class="custom-modal-btn confirm" style="background:var(--blue);">Enregistrer</button>
+      </div>
+    `;
+  } else if(actionType === 'bienvenue') {
+    titleEl.textContent = "Modification : Message de Bienvenue (Georgia)";
+    let curTitle = readJSON('rock_welcome_title', $('#welcomeTitleContainer').innerHTML);
+    let curSub = readJSON('rock_welcome_subtitle', 'Plateforme solidaire d\'accompagnement et de suivi des projets');
+    html = `
+      <div class="admin-form-group">
+        <label>Grand Titre (HTML autorisé) :</label>
+        <textarea class="admin-form-textarea" id="adm_welcomeTitle" required>${escapeHtml(curTitle)}</textarea>
+      </div>
+      <div class="admin-form-group">
+        <label>Sous-titre explicatif :</label>
+        <input type="text" class="admin-form-input" id="adm_welcomeSub" value="${escapeHtml(curSub)}" required>
+      </div>
+      <div class="admin-form-actions">
+        <button type="button" class="custom-modal-btn cancel" onclick="closeAdminForm()">Annuler</button>
+        <button type="submit" class="custom-modal-btn confirm" style="background:var(--blue);">Enregistrer</button>
+      </div>
+    `;
+  } else if(actionType === 'stats_impact') {
+    titleEl.textContent = "Configuration : Statistiques d'Impact";
+    let s1 = readJSON('rock_stat_1', '14');
+    let s2 = readJSON('rock_stat_2', '4 200 $');
+    let s3 = readJSON('rock_stat_3', '100%');
+    html = `
+      <div class="admin-form-group">
+        <label>Nombre / Valeur 1 :</label>
+        <input type="text" class="admin-form-input" id="adm_s1" value="${escapeHtml(s1)}" required>
+      </div>
+      <div class="admin-form-group">
+        <label>Nombre / Valeur 2 :</label>
+        <input type="text" class="admin-form-input" id="adm_s2" value="${escapeHtml(s2)}" required>
+      </div>
+      <div class="admin-form-group">
+        <label>Nombre / Valeur 3 :</label>
+        <input type="text" class="admin-form-input" id="adm_s3" value="${escapeHtml(s3)}" required>
+      </div>
+      <div class="admin-form-actions">
+        <button type="button" class="custom-modal-btn cancel" onclick="closeAdminForm()">Annuler</button>
+        <button type="submit" class="custom-modal-btn confirm" style="background:var(--blue);">Mettre à jour</button>
+      </div>
+    `;
+  } else if(actionType === 'gerer_admins') {
+    titleEl.textContent = "👥 Gérer les 4 Administrateurs";
+    const admins = getAdminsList();
+    html = `<div style="display:flex; flex-direction:column; gap:14px; max-height:60vh; overflow-y:auto;">`;
+    admins.forEach((adm, idx) => {
+      html += `
+        <div style="background:#f8fafc; border:1px solid #e2e8f5; border-radius:12px; padding:12px;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+            <img src="${escapeHtml(adm.avatar)}" style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:1px solid #cbd5e1;" alt="Avatar">
+            <span style="font-weight:800; font-size:13.5px; color:var(--navy);">Administrateur ${idx + 1}</span>
+          </div>
+          <div class="admin-form-group" style="margin-bottom:8px;">
+            <label>Nom :</label>
+            <input type="text" class="admin-form-input" id="adm_name_${idx}" value="${escapeHtml(adm.name)}" required>
+          </div>
+          <div class="admin-form-group" style="margin-bottom:0;">
+            <label>Photo de profil (Depuis la galerie) :</label>
+            <input type="file" class="admin-form-input" id="adm_avatar_file_${idx}" accept="image/*">
+            <small style="color:#64748b; font-size:11px; margin-top:2px;">Laissez vide si vous ne souhaitez pas modifier.</small>
+          </div>
+        </div>
+      `;
+    });
+    html += `</div>
+      <div class="admin-form-actions">
+        <button type="button" class="custom-modal-btn cancel" onclick="closeAdminForm()">Annuler</button>
+        <button type="submit" class="custom-modal-btn confirm" style="background:var(--blue);">Enregistrer</button>
+      </div>
+    `;
+  } else if(actionType === 'dossiers_recus') {
+    titleEl.textContent = "📁 Dossiers de projets soumis";
+    let dossiers = readJSON('rock_candidate_dossiers', []);
+    if(dossiers.length === 0) {
+      html = `<p style="font-size:13.5px; color:#53617f; padding:10px 0;">Aucun dossier soumis pour le moment.</p>`;
+    } else {
+      html = `<div style="display:flex; flex-direction:column; gap:12px; max-height:60vh; overflow-y:auto;">`;
+      dossiers.forEach((d, index) => {
+        html += `
+          <div style="background:#f8fafc; border:1px solid #e2e8f5; border-radius:12px; padding:12px; font-size:13px;">
+            <div style="font-weight:800; color:var(--navy); margin-bottom:2px;">${escapeHtml(d.projectTitle)}</div>
+            <div style="color:#53617f; font-size:12px; margin-bottom:6px;">Par : <b>${escapeHtml(d.name)}</b> (${escapeHtml(d.category)}) — Budget : ${escapeHtml(d.budget)}</div>
+            <p style="margin:0 0 8px; color:#1e293b; line-height:1.4;">${escapeHtml(d.description)}</p>
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:11.5px; color:#64748b;">
+              <span>Tél : ${escapeHtml(d.phone)}</span>
+              <button type="button" onclick="deleteDossier(${index})" style="background:#fee2e2; color:#dc2626; border:0; padding:4px 10px; border-radius:6px; font-weight:700; cursor:pointer;">Supprimer</button>
+            </div>
+          </div>
+        `;
+      });
+      html += `</div>`;
+    }
+  } else if(actionType === 'entete') {
+    titleEl.textContent = "Configuration : En-tête & Identité";
+    let phone = readJSON('rock_admin_phone', '+229 01 02 03 04');
+    let email = readJSON('rock_admin_email', 'contact@therocksolidarity.org');
+    html = `
+      <div class="admin-form-group">
+        <label>Numéro de téléphone / WhatsApp principal :</label>
+        <input type="text" class="admin-form-input" id="adm_phone" value="${escapeHtml(phone)}" required>
+      </div>
+      <div class="admin-form-group">
+        <label>Adresse E-mail de contact :</label>
+        <input type="email" class="admin-form-input" id="adm_email" value="${escapeHtml(email)}" required>
+      </div>
+      <div class="admin-form-actions">
+        <button type="button" class="custom-modal-btn cancel" onclick="closeAdminForm()">Annuler</button>
+        <button type="submit" class="custom-modal-btn confirm" style="background:var(--blue);">Enregistrer</button>
+      </div>
+    `;
+  } else if(actionType === 'banniere') {
+    titleEl.textContent = "Gestion : Bannière / Slider (3 phrases)";
+    let phrase1 = readJSON('rock_hero_p1', "Soutenons ensemble les projets qui bâtissent <em>un avenir meilleur</em>");
+    let phrase2 = readJSON('rock_hero_p2', "Chaque initiative solidaire mérite d'être portée vers le succès");
+    let phrase3 = readJSON('rock_hero_p3', "Des projets qui méritent une chance");
+    html = `
+      <p style="font-size:13px; color:#53617f; margin-bottom:12px;">Modifiez ci-dessous les 3 phrases du slider publicitaire de la bannière :</p>
+      <div class="admin-form-group">
+        <label>Phrase 1 (Slide 1 - Titre principal) :</label>
+        <textarea class="admin-form-textarea" id="adm_hero1" style="min-height:70px;" required>${escapeHtml(phrase1)}</textarea>
+      </div>
+      <div class="admin-form-group">
+        <label>Phrase 2 (Slide 2) :</label>
+        <textarea class="admin-form-textarea" id="adm_hero2" style="min-height:70px;" required>${escapeHtml(phrase2)}</textarea>
+      </div>
+      <div class="admin-form-group">
+        <label>Phrase 3 (Slide 3 - Texte encadré à la une) :</label>
+        <textarea class="admin-form-textarea" id="adm_hero3" style="min-height:70px;" required>${escapeHtml(phrase3)}</textarea>
+      </div>
+      <div class="admin-form-actions">
+        <button type="button" class="custom-modal-btn cancel" onclick="closeAdminForm()">Annuler</button>
+        <button type="submit" class="custom-modal-btn confirm" style="background:var(--blue);">Enregistrer les phrases</button>
+      </div>
+    `;
+  } else if(actionType === 'pied_page') {
+    titleEl.textContent = "Configuration : Pied de page";
+    let footerText = readJSON('rock_footer_desc', 'Une initiative privée qui accompagne les entrepreneurs, les entreprises et les porteurs de projets dans leurs ambitions de développement.');
+    html = `
+      <div class="admin-form-group">
+        <label>Description du pied de page :</label>
+        <textarea class="admin-form-textarea" id="adm_footerDesc" required>${escapeHtml(footerText)}</textarea>
+      </div>
+      <div class="admin-form-actions">
+        <button type="button" class="custom-modal-btn cancel" onclick="closeAdminForm()">Annuler</button>
+        <button type="submit" class="custom-modal-btn confirm" style="background:var(--blue);">Enregistrer</button>
+      </div>
+    `;
+  } else if(actionType === 'faire_publication') {
+    titleEl.textContent = "Créer : + Faire une Publication";
+    const admins = getAdminsList();
+    let adminOptionsHtml = '';
+    admins.forEach((adm, idx) => {
+      adminOptionsHtml += `<option value="${idx}">${escapeHtml(adm.name)}</option>`;
+    });
+
+    html = `
+      <div class="admin-form-group">
+        <label>Sélectionner l'administrateur (Auteur) :</label>
+        <select class="admin-form-select" id="adm_selectedAdminIndex">
+          ${adminOptionsHtml}
+        </select>
+      </div>
+      <div class="admin-form-group">
+        <label>Contenu / Texte de la publication :</label>
+        <textarea class="admin-form-textarea" id="adm_postText" placeholder="Écrivez votre message ici..." required></textarea>
+      </div>
+      <div class="admin-form-group">
+        <label>Sélectionner des médias (Photos / Vidéos) :</label>
+        <input type="file" class="admin-form-input" id="adm_postMediaFiles" accept="image/*,video/*" multiple>
+        <small style="color:#64748b; font-size:11px; margin-top:2px;">Vous pouvez sélectionner plusieurs fichiers depuis votre galerie.</small>
+      </div>
+      <div class="admin-form-actions">
+        <button type="button" class="custom-modal-btn cancel" onclick="closeAdminForm()">Annuler</button>
+        <button type="submit" class="custom-modal-btn confirm" style="background:var(--blue);">Publier</button>
+      </div>
+    `;
+  }
+
+  contentEl.innerHTML = html;
+  overlay.classList.add('open');
+}
+
+function closeAdminForm() {
+  $('#adminFormOverlay')?.classList.remove('open');
+  currentAdminActionType = null;
+}
+
+const mediaDB = (() => {
+  let dbp;
+  function open() {
+    if (!dbp) dbp = new Promise((res, rej) => {
+      const r = indexedDB.open('rock_media_db', 1);
+      r.onupgradeneeded = () => r.result.createObjectStore('media', { keyPath: 'id' });
+      r.onsuccess = () => res(r.result);
+      r.onerror = () => rej(r.error);
+    });
+    return dbp;
+  }
+  return {
+    put: (id, blob) => open().then(db => new Promise((res, rej) => {
+      const tx = db.transaction('media', 'readwrite');
+      tx.objectStore('media').put({ id, blob });
+      tx.oncomplete = () => res(true);
+      tx.onerror = () => rej(tx.error);
+    })),
+    get: id => open().then(db => new Promise((res, rej) => {
+      const tx = db.transaction('media', 'readonly');
+      const req = tx.objectStore('media').get(id);
+      tx.oncomplete = () => res(req.result);
+      tx.onerror = () => rej(tx.error);
+    }))
+  };
+})();
+
+async function fileToDataUrl(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+async function submitAdminForm(event) {
+  event.preventDefault();
+  
+  if(currentAdminActionType === 'menu_textes') {
+    let val = $('#adm_chatLabel').value.trim();
+    let newPwd = $('#adm_newPwd').value.trim();
+    await writeJSON('rock_chat_label', val);
+    await writeJSON('rock_admin_pwd', newPwd);
+    $('#chatLabelText').textContent = val;
+    showToast('Paramètres mis à jour sur JSONBin !');
+  } else if(currentAdminActionType === 'bienvenue') {
+    let titleVal = $('#adm_welcomeTitle').value.trim();
+    let subVal = $('#adm_welcomeSub').value.trim();
+    await writeJSON('rock_welcome_title', titleVal);
+    await writeJSON('rock_welcome_subtitle', subVal);
+    $('#welcomeTitleContainer').innerHTML = titleVal;
+    $('#welcomeSubtitleContainer').textContent = subVal;
+    showToast('Message de bienvenue mis à jour sur JSONBin !');
+  } else if(currentAdminActionType === 'stats_impact') {
+    let s1 = $('#adm_s1').value.trim();
+    let s2 = $('#adm_s2').value.trim();
+    let s3 = $('#adm_s3').value.trim();
+    await writeJSON('rock_stat_1', s1);
+    await writeJSON('rock_stat_2', s2);
+    await writeJSON('rock_stat_3', s3);
+    loadImpactStats();
+    showToast('Statistiques mises à jour sur JSONBin !');
+  } else if(currentAdminActionType === 'gerer_admins') {
+    let admins = getAdminsList();
+    for(let i = 0; i < admins.length; i++) {
+      let nameInput = $(`#adm_name_${i}`);
+      let fileInput = $(`#adm_avatar_file_${i}`);
+      if(nameInput) {
+        admins[i].name = nameInput.value.trim() || admins[i].name;
+      }
+      if(fileInput && fileInput.files && fileInput.files[0]) {
+        try {
+          let base64Img = await fileToDataUrl(fileInput.files[0]);
+          admins[i].avatar = base64Img;
+        } catch(e) {}
+      }
+    }
+    await writeJSON('rock_admins_list', admins);
+    renderPublicPosts();
+    showToast('Profils des 4 administrateurs mis à jour sur JSONBin !');
+  } else if(currentAdminActionType === 'entete') {
+    let phoneVal = $('#adm_phone').value.trim();
+    let emailVal = $('#adm_email').value.trim();
+    await writeJSON('rock_admin_phone', phoneVal);
+    await writeJSON('rock_admin_email', emailVal);
+    if($('#footerPhoneText')) $('#footerPhoneText').textContent = phoneVal;
+    if($('#footerEmailText')) $('#footerEmailText').textContent = emailVal;
+    showToast('Identité mise à jour sur JSONBin !');
+  } else if(currentAdminActionType === 'banniere') {
+    let p1 = $('#adm_hero1').value.trim();
+    let p2 = $('#adm_hero2').value.trim();
+    let p3 = $('#adm_hero3').value.trim();
+    await writeJSON('rock_hero_p1', p1);
+    await writeJSON('rock_hero_p2', p2);
+    await writeJSON('rock_hero_p3', p3);
+    loadHeroPhrases();
+    showToast('Phrases de la bannière mises à jour sur JSONBin !');
+  } else if(currentAdminActionType === 'pied_page') {
+    let descVal = $('#adm_footerDesc').value.trim();
+    await writeJSON('rock_footer_desc', descVal);
+    if($('#footerDescText')) $('#footerDescText').textContent = descVal;
+    showToast('Pied de page mis à jour sur JSONBin !');
+  } else if(currentAdminActionType === 'faire_publication') {
+    let adminIdx = parseInt($('#adm_selectedAdminIndex').value, 10);
+    let admins = getAdminsList();
+    let selectedAdmin = admins[adminIdx] || admins[0];
+
+    let textVal = $('#adm_postText').value.trim();
+    let fileInput = $('#adm_postMediaFiles');
+    
+    let mediaMetaList = [];
+    if(fileInput && fileInput.files && fileInput.files.length > 0) {
+      for(let i = 0; i < fileInput.files.length; i++) {
+        let file = fileInput.files[i];
+        let mediaId = 'm_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        let isVideo = file.type.startsWith('video');
+        try {
+          await mediaDB.put(mediaId, file);
+          mediaMetaList.push({ id: mediaId, type: isVideo ? 'video' : 'image' });
+        } catch(e) {}
+      }
+    }
+
+    let customPosts = readJSON('rock_custom_posts', []);
+    customPosts.unshift({
+      id: 'post_' + Date.now(),
+      author: selectedAdmin.name,
+      avatar: selectedAdmin.avatar,
+      text: textVal,
+      createdAt: new Date().toISOString(),
+      media: mediaMetaList
+    });
+    await writeJSON('rock_custom_posts', customPosts);
+    renderPublicPosts();
+    showToast('Nouvelle publication ajoutée !');
+  }
+
+  closeAdminForm();
+}
+
+async function deleteDossier(index) {
+  let dossiers = readJSON('rock_candidate_dossiers', []);
+  dossiers.splice(index, 1);
+  await writeJSON('rock_candidate_dossiers', dossiers);
+  updateAdminDossierBadge();
+  openAdminForm('dossiers_recus');
+  showToast('Dossier supprimé');
+}
+
+async function submitCandidatureProject(event) {
+  event.preventDefault();
+  const name = $('#cand_name').value.trim();
+  const projectTitle = $('#cand_projectTitle').value.trim();
+  const category = $('#cand_category').value;
+  const description = $('#cand_description').value.trim();
+  const budget = $('#cand_budget').value.trim();
+  const phone = $('#cand_phone').value.trim();
+
+  const newDossier = {
+    id: 'cand_' + Date.now(),
+    name, projectTitle, category, description, budget, phone,
+    createdAt: new Date().toISOString()
+  };
+
+  let dossiers = readJSON('rock_candidate_dossiers', []);
+  dossiers.unshift(newDossier);
+  await writeJSON('rock_candidate_dossiers', dossiers);
+
+  $('#projectSubmitForm').reset();
+  showToast('✅ Votre dossier a été soumis avec succès !');
+  switchView('home');
+}
+
 function formatLiveClockWithAgo(dateString) {
   if (!dateString) return "";
   const past = new Date(dateString);
@@ -968,41 +1656,28 @@ function formatLiveClockWithAgo(dateString) {
   const currentMinutes = String(now.getMinutes()).padStart(2, '0');
   const currentSeconds = String(now.getSeconds()).padStart(2, '0');
   const liveClock = `${currentHours}:${currentMinutes}:${currentSeconds}`;
-
   const diffSec = Math.floor((now - past) / 1000);
 
   let agoText = "À l'instant";
   if (diffSec >= 60) {
     const diffMin = Math.floor(diffSec / 60);
-    if (diffMin < 60) {
-      agoText = `Il y a ${diffMin} min`;
-    } else {
+    if (diffMin < 60) agoText = `Il y a ${diffMin} min`;
+    else {
       const diffHour = Math.floor(diffMin / 60);
-      if (diffHour < 24) {
-        agoText = `Il y a ${diffHour} h`;
-      } else {
+      if (diffHour < 24) agoText = `Il y a ${diffHour} h`;
+      else {
         const diffDay = Math.floor(diffHour / 24);
-        if (diffDay === 1) {
-          agoText = `Il y a 1 jour`;
-        } else if (diffDay < 30) {
-          agoText = `Il y a ${diffDay} jours`;
-        } else {
-          const diffMonth = Math.floor(diffDay / 30);
-          agoText = diffMonth === 1 ? `Il y a 1 mois` : `Il y a ${diffMonth} mois`;
-        }
+        agoText = diffDay === 1 ? `Il y a 1 jour` : `Il y a ${diffDay} jours`;
       }
     }
   }
-
   return `${liveClock} (${agoText})`;
 }
 
 function updateAllLiveClocks() {
   $$('.live-clock-time').forEach(el => {
     const dateStr = el.getAttribute('data-time');
-    if (dateStr) {
-      el.textContent = formatLiveClockWithAgo(dateStr);
-    }
+    if (dateStr) el.textContent = formatLiveClockWithAgo(dateStr);
   });
 }
 setInterval(updateAllLiveClocks, 1000);
@@ -1011,11 +1686,20 @@ const mediaUrlCache = {};
 async function resolvePostMedia(p) {
   if (mediaUrlCache[p.id]) return mediaUrlCache[p.id];
   let list = [];
-  const old = p.mediaList || (p.media ? [].concat(p.media) : []);
-  list = old.map(s => {
-    const isYt = String(s).includes('youtube.com') || String(s).includes('youtu.be');
-    return { src: s, isVideo: isYt || String(s).startsWith('data:video') || String(s).endsWith('.mp4'), isYoutube: isYt };
-  });
+  if (Array.isArray(p.media) && p.media.length && typeof p.media[0] === 'object') {
+    for (const m of p.media) {
+      try {
+        const rec = await mediaDB.get(m.id);
+        if (rec?.blob) list.push({ src: URL.createObjectURL(rec.blob), isVideo: m.type === 'video', isYoutube: m.type === 'youtube' });
+      } catch (err) {}
+    }
+  } else {
+    const old = p.mediaList || (p.media ? [].concat(p.media) : []);
+    list = old.map(s => {
+      const isYt = String(s).includes('youtube.com') || String(s).includes('youtu.be');
+      return { src: s, isVideo: isYt || String(s).startsWith('data:video') || String(s).endsWith('.mp4'), isYoutube: isYt };
+    });
+  }
   mediaUrlCache[p.id] = list;
   return list;
 }
@@ -1113,7 +1797,7 @@ function getUserLikesStatus() { return readJSON(USER_LIKES_KEY, {}); }
 function getReactionsData() { return readJSON(REACTIONS_KEY, {}); }
 function getCommentsData() { return readJSON(COMMENTS_KEY, {}); }
 
-function handleLikeClick(postId) {
+async function handleLikeClick(postId) {
   let userStatus = getUserLikesStatus();
   let likes = getLikesData();
   let currentLikes = likes[postId] !== undefined ? likes[postId] : 0;
@@ -1127,15 +1811,13 @@ function handleLikeClick(postId) {
   }
 
   likes[postId] = currentLikes;
-  try {
-    localStorage.setItem(LIKES_KEY, JSON.stringify(likes));
-    localStorage.setItem(USER_LIKES_KEY, JSON.stringify(userStatus));
-  } catch(e){}
+  await writeJSON(LIKES_KEY, likes);
+  await writeJSON(USER_LIKES_KEY, userStatus);
 
   updateLikeButtonUI(postId);
 }
 
-function setReaction(postId, reactionEmoji) {
+async function setReaction(postId, reactionEmoji) {
   let reactions = getReactionsData();
   let userStatus = getUserLikesStatus();
   let likes = getLikesData();
@@ -1145,13 +1827,11 @@ function setReaction(postId, reactionEmoji) {
   if(!userStatus[postId]) {
     userStatus[postId] = true;
     likes[postId] = (likes[postId] !== undefined ? likes[postId] : 0) + 1;
-    try {
-      localStorage.setItem(LIKES_KEY, JSON.stringify(likes));
-      localStorage.setItem(USER_LIKES_KEY, JSON.stringify(userStatus));
-    } catch(e){}
+    await writeJSON(LIKES_KEY, likes);
+    await writeJSON(USER_LIKES_KEY, userStatus);
   }
 
-  try { localStorage.setItem(REACTIONS_KEY, JSON.stringify(reactions)); } catch(e){}
+  await writeJSON(REACTIONS_KEY, reactions);
 
   closeAllReactionsPopups();
   updateLikeButtonUI(postId);
@@ -1199,9 +1879,7 @@ function toggleReactionsPopup(event, postId) {
   const popup = $(`#reactions-popup-${postId}`);
   const isOpen = popup?.classList.contains('open');
   closeAllReactionsPopups();
-  if(!isOpen && popup) {
-    popup.classList.add('open');
-  }
+  if(!isOpen && popup) popup.classList.add('open');
 }
 
 function closeAllReactionsPopups() {
@@ -1213,12 +1891,10 @@ document.addEventListener('click', closeAllReactionsPopups);
 
 function toggleCommentsSection(postId) {
   const section = $(`#comments-sec-${postId}`);
-  if(section) {
-    section.classList.toggle('open');
-  }
+  if(section) section.classList.toggle('open');
 }
 
-function submitComment(event, postId) {
+async function submitComment(event, postId) {
   event.preventDefault();
   const input = $(`#comment-input-${postId}`);
   if(!input) return;
@@ -1243,7 +1919,7 @@ function submitComment(event, postId) {
   };
 
   commentsData[postId].push(newComment);
-  try { localStorage.setItem(COMMENTS_KEY, JSON.stringify(commentsData)); } catch(e){}
+  await writeJSON(COMMENTS_KEY, commentsData);
 
   input.value = '';
   renderCommentsList(postId);
@@ -1258,7 +1934,7 @@ function toggleReplyBox(commentId) {
   }
 }
 
-function submitReply(event, postId, commentId) {
+async function submitReply(event, postId, commentId) {
   event.preventDefault();
   const input = $(`#reply-input-${commentId}`);
   if(!input) return;
@@ -1280,7 +1956,7 @@ function submitReply(event, postId, commentId) {
       }
       return c;
     });
-    try { localStorage.setItem(COMMENTS_KEY, JSON.stringify(commentsData)); } catch(e){}
+    await writeJSON(COMMENTS_KEY, commentsData);
     renderCommentsList(postId);
     showToast('Réponse publiée');
   }
@@ -1292,21 +1968,17 @@ function toggleCommentStickersPopup(event, commentId) {
   const popup = $(`#comment-stickers-${commentId}`);
   const isOpen = popup?.classList.contains('open');
   closeAllReactionsPopups();
-  if(!isOpen && popup) {
-    popup.classList.add('open');
-  }
+  if(!isOpen && popup) popup.classList.add('open');
 }
 
-function setCommentSticker(postId, commentId, emoji) {
+async function setCommentSticker(postId, commentId, emoji) {
   const commentsData = getCommentsData();
   if(commentsData[postId]) {
     commentsData[postId] = commentsData[postId].map(c => {
-      if(c.id === commentId) {
-        c.sticker = emoji;
-      }
+      if(c.id === commentId) c.sticker = emoji;
       return c;
     });
-    try { localStorage.setItem(COMMENTS_KEY, JSON.stringify(commentsData)); } catch(e){}
+    await writeJSON(COMMENTS_KEY, commentsData);
     renderCommentsList(postId);
     showToast('Réaction ajoutée');
   }
@@ -1329,7 +2001,7 @@ document.addEventListener('click', () => {
 async function deleteComment(postId, commentId) {
   const confirmed = await showCustomModal(
     "Supprimer le commentaire",
-    "Voulez-vous vraiment supprimer ce commentaire ? Cette action est irréversible.",
+    "Voulez-vous vraiment supprimer ce commentaire ?",
     "Supprimer",
     "M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
   );
@@ -1338,26 +2010,26 @@ async function deleteComment(postId, commentId) {
   const commentsData = getCommentsData();
   if(commentsData[postId]) {
     commentsData[postId] = commentsData[postId].filter(c => c.id !== commentId);
-    try { localStorage.setItem(COMMENTS_KEY, JSON.stringify(commentsData)); } catch(e){}
+    await writeJSON(COMMENTS_KEY, commentsData);
     renderCommentsList(postId);
     showToast('Commentaire supprimé');
   }
 }
 
-function toggleMaskComment(postId, commentId) {
+async function toggleMaskComment(postId, commentId) {
   const commentsData = getCommentsData();
   if(commentsData[postId]) {
     commentsData[postId] = commentsData[postId].map(c => {
       if(c.id === commentId) c.masked = !c.masked;
       return c;
     });
-    try { localStorage.setItem(COMMENTS_KEY, JSON.stringify(commentsData)); } catch(e){}
+    await writeJSON(COMMENTS_KEY, commentsData);
     renderCommentsList(postId);
-    showToast('Statut du commentaire mis à jour');
+    showToast('Statut mis à jour');
   }
 }
 
-function togglePinComment(postId, commentId) {
+async function togglePinComment(postId, commentId) {
   const commentsData = getCommentsData();
   if(commentsData[postId]) {
     commentsData[postId] = commentsData[postId].map(c => {
@@ -1365,7 +2037,7 @@ function togglePinComment(postId, commentId) {
       return c;
     });
     commentsData[postId].sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0));
-    try { localStorage.setItem(COMMENTS_KEY, JSON.stringify(commentsData)); } catch(e){}
+    await writeJSON(COMMENTS_KEY, commentsData);
     renderCommentsList(postId);
     showToast('Épingle mise à jour');
   }
@@ -1382,7 +2054,7 @@ function startEditComment(postId, commentId) {
   }
 }
 
-function saveEditComment(event, postId, commentId) {
+async function saveEditComment(event, postId, commentId) {
   if(event.key === 'Enter') {
     const newText = event.target.value.trim();
     if(!newText) return;
@@ -1395,7 +2067,7 @@ function saveEditComment(event, postId, commentId) {
         }
         return c;
       });
-      try { localStorage.setItem(COMMENTS_KEY, JSON.stringify(commentsData)); } catch(e){}
+      await writeJSON(COMMENTS_KEY, commentsData);
       renderCommentsList(postId);
       showToast('Commentaire modifié');
     }
@@ -1461,7 +2133,7 @@ function renderCommentsList(postId) {
               <button type="button" class="sticker-emoji-btn" onclick="setCommentSticker('${postId}', '${c.id}', '👏')">👏</button>
             </div>
 
-            <button type="button" class="comment-options-btn" onclick="toggleCommentMenu(event, '${c.id}')" aria-label="Options du commentaire">···</button>
+            <button type="button" class="comment-options-btn" onclick="toggleCommentMenu(event, '${c.id}')" aria-label="Options">···</button>
             <div class="comment-menu-dropdown" id="comment-menu-${c.id}">
               <button type="button" class="comment-menu-item" onclick="toggleMaskComment('${postId}', '${c.id}')">${c.masked ? 'Afficher' : 'Masquer'}</button>
               <button type="button" class="comment-menu-item" onclick="togglePinComment('${postId}', '${c.id}')">${c.pinned ? 'Détacher' : 'Épingler en haut'}</button>
@@ -1480,7 +2152,7 @@ function renderCommentsList(postId) {
 
         <div id="reply-box-${c.id}" style="display:none;">
           <form class="reply-form" onsubmit="submitReply(event, '${postId}', '${c.id}')">
-            <input type="text" class="reply-input" id="reply-input-${c.id}" placeholder="Répondre à ${escapeHtml(c.author)}..." required>
+            <input type="text" class="reply-input" id="reply-input-${c.id}" placeholder="Répondre..." required>
             <button type="submit" class="reply-submit">Envoyer</button>
           </form>
         </div>
@@ -1490,83 +2162,155 @@ function renderCommentsList(postId) {
   container.innerHTML = html;
 }
 
-// --- FONCTION DE RÉCUPÉRATION DEPUIS AIRTABLE EN TEMPS RÉEL ---
-async function fetchPostsFromAirtable() {
-  const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/Posts`;
-  try {
-    const response = await fetch(url, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${AIRTABLE_PAT}`,
-        'Content-Type': 'application/json'
-      }
-    });
-
-    if (!response.ok) {
-      console.error('Erreur lors de la lecture Airtable');
-      return [];
-    }
-
-    const data = await response.json();
-    // Conversion des enregistrements Airtable au format des publications du site
-    return data.records.map(record => ({
-      id: record.id,
-      author: record.fields.Author || 'Le fondateur',
-      text: record.fields.CONTENU || record.fields.Title || '',
-      createdAt: record.createdTime || new Date().toISOString(),
-      mediaList: []
-    }));
-  } catch (error) {
-    console.error('Erreur réseau Airtable :', error);
-    return [];
+function triggerNativeShare(text, postId) {
+  if (navigator.share) {
+    navigator.share({ title: 'The Rock Solidarity Foundation', text: text, url: window.location.href }).catch(() => {});
+  } else {
+    copyPostLink(postId);
   }
 }
 
+function copyPostLink(postId) {
+  const url = window.location.href.split('#')[0] + '#' + postId;
+  navigator.clipboard.writeText(url).then(() => {
+    showToast('Lien copié dans le presse-papier !');
+  }).catch(() => {});
+}
+
+async function adminEditPost(postId) {
+  let customPosts = readJSON('rock_custom_posts', []);
+  let post = customPosts.find(p => p.id === postId);
+  if(!post) return;
+  let newText = prompt("Modifier le texte de la publication :", post.text);
+  if(newText !== null) {
+    post.text = newText;
+    await writeJSON('rock_custom_posts', customPosts);
+    renderPublicPosts();
+    showToast('Publication modifiée !');
+  }
+}
+
+async function adminMaskPost(postId) {
+  let customPosts = readJSON('rock_custom_posts', []);
+  let post = customPosts.find(p => p.id === postId);
+  if(!post) return;
+  post.masked = !post.masked;
+  await writeJSON('rock_custom_posts', customPosts);
+  renderPublicPosts();
+  showToast(post.masked ? 'Publication masquée' : 'Publication démasquée');
+}
+
+async function adminDeletePost(postId) {
+  const confirmed = await showCustomModal(
+    "Supprimer la publication",
+    "Voulez-vous vraiment supprimer cette publication définitivement ?",
+    "Supprimer",
+    "M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+  );
+  if(!confirmed) return;
+
+  let customPosts = readJSON('rock_custom_posts', []);
+  customPosts = customPosts.filter(p => p.id !== postId);
+  await writeJSON('rock_custom_posts', customPosts);
+  renderPublicPosts();
+  showToast('Publication supprimée');
+}
+
 async function renderPublicPosts() {
+  await fetchJsonBinData();
+  
+  // Appliquer les paramètres globaux récupérés de JSONBin
+  const phone = readJSON('rock_admin_phone', '+229 01 02 03 04');
+  const email = readJSON('rock_admin_email', 'contact@therocksolidarity.org');
+  if($('#footerPhoneText')) $('#footerPhoneText').textContent = phone;
+  if($('#footerEmailText')) $('#footerEmailText').textContent = email;
+
+  const savedTitle = readJSON('rock_welcome_title', null);
+  if(savedTitle && $('#welcomeTitleContainer')) {
+    $('#welcomeTitleContainer').innerHTML = savedTitle;
+  }
+  const savedSub = readJSON('rock_welcome_subtitle', null);
+  if(savedSub && $('#welcomeSubtitleContainer')) {
+    $('#welcomeSubtitleContainer').textContent = savedSub;
+  }
+  
+  if($('#statVal1')) $('#statVal1').textContent = readJSON('rock_stat_1', '14');
+  if($('#statVal2')) $('#statVal2').textContent = readJSON('rock_stat_2', '4 200 $');
+  if($('#statVal3')) $('#statVal3').textContent = readJSON('rock_stat_3', '100%');
+
+  const chatLabel = readJSON('rock_chat_label', "Écrivez-nous sur WhatsApp");
+  if($('#chatLabelText')) $('#chatLabelText').textContent = chatLabel;
+
+  const footerDesc = readJSON('rock_footer_desc', 'Une initiative privée qui accompagne les entrepreneurs, les entreprises et les porteurs de projets dans leurs ambitions de développement.');
+  if($('#footerDescText')) $('#footerDescText').textContent = footerDesc;
+
   const container = $('#dynamicFeedContainer');
   if(!container) return;
   
-  // Récupération des publications depuis Airtable
-  let customPosts = await fetchPostsFromAirtable();
-  
-  // S'il n'y a pas encore de publications sur Airtable, on prend le cache local par défaut
-  if (customPosts.length === 0) {
-    customPosts = readJSON('rock_custom_posts', []);
-  }
+  let customPosts = readJSON('rock_custom_posts', []);
+  const admins = getAdminsList();
+
+  customPosts = customPosts.map((p, idx) => {
+    if (!p.createdAt && !p.date) {
+      const d = new Date();
+      d.setHours(d.getHours() - (idx + 1) * 4);
+      p.createdAt = d.toISOString();
+    }
+    if(!p.avatar) {
+      p.avatar = admins[0].avatar;
+      p.author = admins[0].name;
+    }
+    return p;
+  });
 
   const commentsData = getCommentsData();
 
   let html = '';
   for (const p of customPosts) {
+    if(p.masked && !isAdminUnlocked) continue;
+
     const mediaList = await resolvePostMedia(p);
     const mediaHtml = renderMediaGrid(mediaList, p.id);
     const rawDate = p.createdAt || p.date;
     const formattedText = formatLiveClockWithAgo(rawDate);
     const commentsList = commentsData[p.id] || [];
 
+    let dropdownItems = `
+      <button class="post-menu-item" onclick="triggerNativeShare('${escapeHtml(p.text)}', '${p.id}')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+        Partager...
+      </button>
+      <button class="post-menu-item" onclick="copyPostLink('${p.id}')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copier le lien
+      </button>
+    `;
+
+    if (isAdminUnlocked) {
+      dropdownItems += `
+        <div style="height:1px; background:#e5eaf7; margin:4px 0;"></div>
+        <button class="post-menu-item" onclick="adminEditPost('${p.id}')">✏️ Modifier</button>
+        <button class="post-menu-item" onclick="adminMaskPost('${p.id}')">${p.masked ? '👁️ Démasquer' : '🙈 Masquer'}</button>
+        <button class="post-menu-item danger" onclick="adminDeletePost('${p.id}')">🗑️ Supprimer</button>
+      `;
+    }
+
     html += `
-      <article class="post" id="${p.id}">
+      <article class="post" id="${p.id}" style="${p.masked ? 'opacity:0.6; border: 1.5px dashed #dc2626;' : ''}">
         <div class="post-head">
           <div class="post-author-group">
-            <img class="project-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=160&h=160&fit=crop&crop=faces" alt="Avatar">
+            <img class="project-avatar" src="${escapeHtml(p.avatar)}" alt="Avatar">
             <div>
-              <div class="post-author">${escapeHtml(p.author || 'Le fondateur')} <span class="verified">✓</span></div>
+              <div class="post-author">${escapeHtml(p.author || 'Le fondateur')} <span class="verified">✓</span> ${p.masked ? '<span style="color:#dc2626; font-size:11px;">[Masqué]</span>' : ''}</div>
               <div class="post-meta live-clock-time" data-time="${rawDate}">${formattedText}</div>
             </div>
           </div>
           <div style="position:relative;">
-            <button class="post-options-btn" onclick="togglePostMenu(event, '${p.id}')" aria-label="Options de la publication">
+            <button class="post-options-btn" onclick="togglePostMenu(event, '${p.id}')" aria-label="Options">
               <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
             </button>
             <div class="post-menu-dropdown" id="menu-${p.id}">
-              <button class="post-menu-item" onclick="triggerNativeShare('${escapeHtml(p.text)}', '${p.id}')">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
-                Partager...
-              </button>
-              <button class="post-menu-item" onclick="copyPostLink('${p.id}')">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                Copier le lien
-              </button>
+              ${dropdownItems}
             </div>
           </div>
         </div>
@@ -1609,8 +2353,10 @@ async function renderPublicPosts() {
   container.innerHTML = html;
 
   for (const p of customPosts) {
-    updateLikeButtonUI(p.id);
-    renderCommentsList(p.id);
+    if(!p.masked || isAdminUnlocked) {
+      updateLikeButtonUI(p.id);
+      renderCommentsList(p.id);
+    }
   }
 }
 
@@ -1624,7 +2370,6 @@ function togglePostMenu(event, postId) {
 
 document.addEventListener('click', () => {
   $$('.post-menu-dropdown').forEach(m => m.classList.remove('open'));
-  $('#waAttachPopup')?.classList.remove('open');
 });
 
 function showToast(msg) {
@@ -1639,6 +2384,8 @@ function switchView(viewName) {
   $$('.site-view').forEach(v => v.classList.remove('active-view'));
   if(viewName === 'criteres') $('#viewCriteres')?.classList.add('active-view');
   else if(viewName === 'confidentialite') $('#viewConfidentialite')?.classList.add('active-view');
+  else if(viewName === 'candidature') $('#viewCandidature')?.classList.add('active-view');
+  else if(viewName === 'statsPage') $('#viewStatsPage')?.classList.add('active-view');
   else $('#viewHome')?.classList.add('active-view');
   window.scrollTo({ top: 0, behavior: 'smooth' });
   closeDrawer();
@@ -1653,15 +2400,9 @@ $('#hamburgerBtn')?.addEventListener('click', openDrawer);
 $('#drawerClose')?.addEventListener('click', closeDrawer);
 overlay?.addEventListener('click', closeDrawer);
 
-const messenger = $('#messengerScreen');
-const chatLauncher = $('#chatLauncher');
-
 function initChatWidget() {
-  const customLabel = localStorage.getItem('rock_chat_label') || "Besoin d'aide ? Écrivez-nous";
-  const labelEl = $('#chatLabelText');
-  if(labelEl) labelEl.textContent = customLabel;
-
   let hasScrolled = false;
+  const chatLauncher = $('#chatLauncher');
   window.addEventListener('scroll', () => {
     if(window.scrollY > 50 && !hasScrolled) {
       hasScrolled = true;
@@ -1674,11 +2415,12 @@ function initChatWidget() {
   setTimeout(() => { chatLauncher?.classList.add('expanded'); }, 1200);
 }
 
-function loadFooterSettings() {
-  const phone = localStorage.getItem('rock_admin_phone') || '+229 01 02 03 04';
-  const email = localStorage.getItem('rock_admin_email') || 'contact@therocksolidarity.org';
-  if($('#footerPhoneText')) $('#footerPhoneText').textContent = phone;
-  if($('#footerEmailText')) $('#footerEmailText').textContent = email;
+function loadHeroPhrases() {
+  const p1 = readJSON('rock_hero_p1', "Soutenons ensemble les projets qui bâtissent <em>un avenir meilleur</em>");
+  const p3 = readJSON('rock_hero_p3', "Des projets qui méritent une chance");
+
+  if($('#heroSlideTitle')) $('#heroSlideTitle').innerHTML = p1;
+  if($('#heroSlideBadgeText')) $('#heroSlideBadgeText').textContent = p3;
 }
 
 function initHeroSlider() {
@@ -1688,11 +2430,19 @@ function initHeroSlider() {
   let currentSlide = 0;
   let slideInterval;
 
+  const p1 = readJSON('rock_hero_p1', "Soutenons ensemble les projets qui bâtissent <em>un avenir meilleur</em>");
+  const p2 = readJSON('rock_hero_p2', "Chaque initiative solidaire mérite d'être portée vers le succès");
+  const p3 = readJSON('rock_hero_p3', "Des projets qui méritent une chance");
+  const phrases = [p1, p2, p3];
+
   function showSlide(index) {
     slides.forEach((s, i) => s.classList.toggle('active', i === index));
     dots.forEach((d, i) => d.classList.toggle('active', i === index));
     currentSlide = index;
+
+    if($('#heroSlideTitle')) $('#heroSlideTitle').innerHTML = phrases[index] || phrases[0];
   }
+
   function nextSlide() { showSlide((currentSlide + 1) % slides.length); }
   function prevSlide() { showSlide((currentSlide - 1 + slides.length) % slides.length); }
 
@@ -1705,206 +2455,14 @@ function initHeroSlider() {
   startInterval();
 }
 
-const messageForm = $('#messageForm');
-const messageInput = $('#messageInput');
-const threadMessages = $('#threadMessages');
-const waAttachBtn = $('#waAttachBtn');
-const waAttachPopup = $('#waAttachPopup');
-const waGalleryInput = $('#waGalleryInput');
-const waCameraInput = $('#waCameraInput');
-const waDocInput = $('#waDocInput');
-const waMicBtn = $('#waMicBtn');
-const voiceRecordingPanel = $('#voiceRecordingPanel');
-const voiceTimer = $('#voiceTimer');
-const voiceCancelBtn = $('#voiceCancelBtn');
-
-let mediaRecorder = null;
-let audioChunks = [];
-let recordingInterval = null;
-let recordingSeconds = 0;
-let isRecording = false;
-
-chatLauncher?.addEventListener('click', () => messenger.classList.add('open'));
-$('#closeMessenger')?.addEventListener('click', () => { messenger.classList.remove('open'); });
-
-waAttachBtn?.addEventListener('click', e => {
-  e.stopPropagation();
-  waAttachPopup?.classList.toggle('open');
-});
-
-$('#attachGalleryBtn')?.addEventListener('click', () => waGalleryInput?.click());
-$('#attachCameraBtn')?.addEventListener('click', () => waCameraInput?.click());
-$('#attachDocBtn')?.addEventListener('click', () => waDocInput?.click());
-
-function handleSelectedFile(file, isVid = false) {
-  if(!file) return;
-  const url = URL.createObjectURL(file);
-  const nowIso = new Date().toISOString();
-  const formattedText = formatLiveClockWithAgo(nowIso);
-  const div = document.createElement('div');
-  div.className = 'wa-message outgoing';
-  div.innerHTML = `
-    <div style="margin-bottom:4px; border-radius:6px; overflow:hidden; max-width:200px;">
-      ${isVid ? `<video src="${url}" controls style="width:100%; display:block;"></video>` : `<img src="${url}" style="width:100%; display:block;">`}
-    </div>
-    <div class="wa-meta"><span class="live-clock-time" data-time="${nowIso}">${formattedText}</span></div>
-  `;
-  threadMessages.appendChild(div);
-  threadMessages.scrollTop = threadMessages.scrollHeight;
-  waAttachPopup?.classList.remove('open');
-}
-
-waGalleryInput?.addEventListener('change', e => handleSelectedFile(e.target.files[0], e.target.files[0]?.type.startsWith('video')));
-waCameraInput?.addEventListener('change', e => handleSelectedFile(e.target.files[0]));
-waDocInput?.addEventListener('change', e => {
-  const file = e.target.files[0];
-  if(!file) return;
-  const nowIso = new Date().toISOString();
-  const formattedText = formatLiveClockWithAgo(nowIso);
-  const div = document.createElement('div');
-  div.className = 'wa-message outgoing';
-  div.innerHTML = `
-    <div style="display:flex; align-items:center; gap:8px; padding:4px 0;">
-      <span style="font-size:22px;">📄</span>
-      <div>
-        <div style="font-weight:700; font-size:13px;">${escapeHtml(file.name)}</div>
-        <div style="font-size:11px; color:#667781;">Document (${Math.round(file.size/1024)} Ko)</div>
-      </div>
-    </div>
-    <div class="wa-meta"><span class="live-clock-time" data-time="${nowIso}">${formattedText}</span></div>
-  `;
-  threadMessages.appendChild(div);
-  threadMessages.scrollTop = threadMessages.scrollHeight;
-  waAttachPopup?.classList.remove('open');
-});
-
-waMicBtn?.addEventListener('click', async () => {
-  if (!isRecording) {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      mediaRecorder = new MediaRecorder(stream);
-      audioChunks = [];
-
-      mediaRecorder.ondataavailable = event => {
-        if(event.data.size > 0) audioChunks.push(event.data);
-      };
-
-      mediaRecorder.onstop = () => {
-        const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
-        const audioUrl = URL.createObjectURL(audioBlob);
-        const nowIso = new Date().toISOString();
-        const formattedText = formatLiveClockWithAgo(nowIso);
-        const durationFormatted = formatSeconds(recordingSeconds);
-
-        const div = document.createElement('div');
-        div.className = 'wa-message outgoing';
-        div.innerHTML = `
-          <div class="wa-voice-bubble">
-            <button type="button" class="wa-voice-play-btn" onclick="playAudioMessage(this, '${audioUrl}')">
-              <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
-            </button>
-            <div class="wa-voice-waveform">
-              <div class="wa-voice-bar" style="height:10px"></div>
-              <div class="wa-voice-bar" style="height:18px"></div>
-              <div class="wa-voice-bar" style="height:14px"></div>
-              <div class="wa-voice-bar" style="height:22px"></div>
-              <div class="wa-voice-bar" style="height:16px"></div>
-              <div class="wa-voice-bar" style="height:8px"></div>
-              <div class="wa-voice-bar" style="height:20px"></div>
-              <div class="wa-voice-bar" style="height:12px"></div>
-            </div>
-            <span class="wa-voice-duration">${durationFormatted}</span>
-          </div>
-          <div class="wa-meta"><span class="live-clock-time" data-time="${nowIso}">${formattedText}</span></div>
-        `;
-        threadMessages.appendChild(div);
-        threadMessages.scrollTop = threadMessages.scrollHeight;
-        stream.getTracks().forEach(track => track.stop());
-      };
-
-      mediaRecorder.start();
-      isRecording = true;
-      recordingSeconds = 0;
-      voiceTimer.textContent = "0:00";
-
-      messageInput.style.display = 'none';
-      voiceRecordingPanel.classList.add('open');
-
-      recordingInterval = setInterval(() => {
-        recordingSeconds++;
-        const mins = Math.floor(recordingSeconds / 60);
-        const secs = recordingSeconds % 60;
-        voiceTimer.textContent = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-      }, 1000);
-
-    } catch(err) {
-      showToast("Impossible d'accéder au microphone.");
-    }
-  }
-});
-
-voiceCancelBtn?.addEventListener('click', () => {
-  if(mediaRecorder && mediaRecorder.state !== 'inactive') {
-    mediaRecorder.stop();
-  }
-  clearInterval(recordingInterval);
-  isRecording = false;
-  voiceRecordingPanel.classList.remove('open');
-  messageInput.style.display = 'block';
-  showToast("Enregistrement annulé");
-});
-
-messageForm?.addEventListener('submit', e => {
-  e.preventDefault();
+document.addEventListener('DOMContentLoaded', async () => {
+  isAdminUnlocked = false;
+  updateAdminUIVisibility();
   
-  if (isRecording) {
-    if(mediaRecorder && mediaRecorder.state !== 'inactive') {
-      mediaRecorder.stop();
-    }
-    clearInterval(recordingInterval);
-    isRecording = false;
-    voiceRecordingPanel.classList.remove('open');
-    messageInput.style.display = 'block';
-    showToast("Message vocal envoyé !");
-    return;
-  }
-
-  const text = messageInput.value.trim();
-  if(!text) return;
-  const nowIso = new Date().toISOString();
-  const formattedText = formatLiveClockWithAgo(nowIso);
-
-  const div = document.createElement('div');
-  div.className = 'wa-message outgoing';
-  div.innerHTML = `<div class="wa-text">${escapeHtml(text)}</div><div class="wa-meta"><span class="live-clock-time" data-time="${nowIso}">${formattedText}</span></div>`;
-  threadMessages.appendChild(div);
-  messageInput.value = '';
-  threadMessages.scrollTop = threadMessages.scrollHeight;
-});
-
-function formatSeconds(totalSecs) {
-  const mins = Math.floor(totalSecs / 60);
-  const secs = totalSecs % 60;
-  return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-}
-
-window.playAudioMessage = function(btn, url) {
-  const audio = new Audio(url);
-  const svg = btn.querySelector('svg');
-  btn.classList.add('playing');
-  svg.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
-  
-  audio.play().catch(() => {});
-  audio.onended = () => {
-    btn.classList.remove('playing');
-    svg.innerHTML = '<polygon points="6,3 20,12 6,21"/>';
-  };
-};
-
-document.addEventListener('DOMContentLoaded', () => {
+  await fetchJsonBinData();
   renderPublicPosts();
   initChatWidget();
-  loadFooterSettings();
+  loadHeroPhrases();
   initHeroSlider();
   
   $('#lightboxBackBtn')?.addEventListener('click', closeLightbox);
@@ -1920,7 +2478,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.addEventListener('keydown', e => {
-    if(e.key === 'Escape') closeLightbox();
+    e.key === 'Escape' && closeLightbox();
   });
 });
 </script>
